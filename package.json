@@ -1,0 +1,16 @@
+{
+  "name": "easy-clipboard",
+  "version": "1.0.0",
+  "description": "chrome extension for easy copy and pasting",
+  "main": "index.js",
+  "dependencies": {
+    "@types/chrome": "0.0.71",
+    "typescript": "^2.9.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jason Xian",
+  "license": "ISC"
+}
