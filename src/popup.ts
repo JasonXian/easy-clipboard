@@ -1,9 +1,23 @@
 (() => {
-    /*
-    chrome.storage.sync.get(["total", "limit"], (budget) => {
-        document.getElementById("spent").innerHTML = budget.total;
-        document.getElementById("limit").innerHTML = budget.limit;
+
+    interface IStorage {
+        history: Array<string>
+    }
+    
+    chrome.storage.sync.get(["history"], (storage: IStorage) => {
+        if (!Array.isArray(storage.history)) {
+            chrome.storage.sync.set({
+                history: []
+            })
+        }
+        let content: Node = document.getElementById("content");
+        for (let i = 0; i < storage.history.length; i++) {
+            let node: Element = document.createElement("h3");
+            node.innerHTML = storage.history[i].replace(/</g, "&lt;").replace(/>/g, "&gt;");
+            content.appendChild(node);
+        }    
     });
+    /*
     document.getElementById("spend").addEventListener("click", () => {
         chrome.storage.sync.get(["total", "limit"], (budget) => {
             let newTotal = 0;
@@ -33,5 +47,4 @@
         });
     });
     */
-    document.getElementById("content").appendChild
 })();
