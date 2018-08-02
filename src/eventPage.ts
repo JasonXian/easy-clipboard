@@ -14,7 +14,7 @@ chrome.contextMenus.onClicked.addListener((clickData) => {
     if (clickData.menuItemId == "easyCopy" && clickData.selectionText) {
         chrome.storage.sync.get(["history"], (storage: IStorage) => {
             if (!Array.isArray(storage.history)) storage.history = [];
-            storage.history.push(clickData.selectionText);
+            storage.history.push(clickData.selectionText.replace(/</g, "&lt;").replace(/>/g, "&gt;"));
             chrome.storage.sync.set({
                 history: storage.history
             });

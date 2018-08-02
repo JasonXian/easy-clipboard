@@ -12,9 +12,26 @@
         }
         let content: Node = document.getElementById("content");
         for (let i = 0; i < storage.history.length; i++) {
-            let node: Element = document.createElement("h3");
-            node.innerHTML = storage.history[i].replace(/</g, "&lt;").replace(/>/g, "&gt;");
-            content.appendChild(node);
+            let containerNode: Element = document.createElement("div");
+            let textNode: Element = document.createElement("h3");
+            textNode.innerHTML = storage.history[i];
+            textNode.className = "copiedText";
+            let deleteNode: Element = document.createElement("a");
+            deleteNode.className = "fas fa-trash-alt";
+            deleteNode.addEventListener("click", (event) => {
+                let target = <Element> event.target;
+                let text = <Element> target.previousSibling;
+                storage.history.splice(storage.history.indexOf(text.innerHTML), 1);
+                chrome.storage.sync.set({
+                    history: storage.history
+                }, () => {
+                    target.remove();
+                    text.remove();
+                });
+            });
+            containerNode.appendChild(textNode);
+            containerNode.appendChild(deleteNode);
+            content.appendChild(containerNode);
         }    
     });
     /*

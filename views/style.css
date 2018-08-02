@@ -1,4 +1,21 @@
 body {
     font-family: 'Lato';
-    width: 150px;
+    width: 200px;
+}
+
+.fa-trash-alt {
+    color: black;
+    font-size: 1.3em;
+    display: inline-flex;
+    margin-left: 1em;
+}
+
+.fa-trash-alt:hover {
+    color: red;
+    cursor: pointer;
+}
+
+.copiedText {
+    width: 85%;
+    display: inline-flex;
 }
