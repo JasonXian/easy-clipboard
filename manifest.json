@@ -12,7 +12,6 @@
         "default_icon": "./static/icon16.png",
         "default_popup": "./views/popup.html"
     },
-    "options_page" : "./views/options.html",
     "background" : {
         "scripts" : ["./src/eventPage.js"],
         "persistant" : false

@@ -1,21 +1,44 @@
 body {
     font-family: 'Lato';
-    width: 200px;
+    width: 16.5em;
+    background-color: #FFFF99;
 }
 
+.buttonContainer {
+    width: 15%;
+    display: inline-block;
+}
+
+.copiedText {
+    width: 85%;
+    display: inline-block;
+    margin: 0;
+}
+
+.copyInput {
+    width: 0.5px;
+    background-color: #FFFF99;
+    color: #FFFF99;
+    cursor: default;
+    border: 0;
+    padding-bottom: 1em;
+}
+
+.fa-copy,
 .fa-trash-alt {
     color: black;
     font-size: 1.3em;
-    display: inline-flex;
-    margin-left: 1em;
+    display: inline-block;
+    padding-left: 1em;
+    padding-bottom: 2em;
+}
+
+.fa-copy:hover {
+    color: green;
+    cursor: pointer;
 }
 
 .fa-trash-alt:hover {
     color: red;
     cursor: pointer;
-}
-
-.copiedText {
-    width: 85%;
-    display: inline-flex;
 }
