@@ -42,3 +42,23 @@ body {
     color: red;
     cursor: pointer;
 }
+
+#header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #FFFF99;
+}
+
+#headerPadding {
+    margin-bottom: 5em;
+}
+
+#title {
+    display: inline-flex;
+}
+
+#notificationText {
+    display: inline-flex;
+    margin-left: 2.5em;
+}

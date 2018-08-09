@@ -18,25 +18,26 @@
         }
         let content: Node = document.getElementById("content");
         for (let i = storage.history.length - 1; i >= 0; i--) {
-            let containerNode: Element = document.createElement("div");
-            let buttonContainerNode: Element = document.createElement("div");
-            let textNode: Element = document.createElement("h3");
-            let deleteNode: Element = document.createElement("a");
-            let copyButtonNode: Element = document.createElement("a");
+            let containerNode:HTMLElement = document.createElement("div");
+            let buttonContainerNode:HTMLElement = document.createElement("div");
+            let textNode:HTMLElement = document.createElement("h3");
+            let deleteNode:HTMLElement = document.createElement("a");
+            let copyButtonNode:HTMLElement = document.createElement("a");
             let copyInputNode: HTMLInputElement = document.createElement("input");
             let text: string = storage.history[i];
             textNode.innerHTML = text.length > 200 ? `${text.substring(0,200)} ...` : text.substring(0,200);
             textNode.className = "copiedText";
             deleteNode.className = "fas fa-trash-alt";
             deleteNode.addEventListener("click", (event) => {
-                let target = <Element> event.target;
-                let deleteTextNode = <Element> target.parentElement.previousElementSibling;
-                let displayNode = <Element> target.parentElement.parentElement;
+                let target = <HTMLElement> event.target;
+                let deleteTextNode = <HTMLElement> target.parentElement.previousElementSibling;
+                let displayNode = <HTMLElement> target.parentElement.parentElement;
                 storage.history.splice(storage.history.indexOf(deleteTextNode.innerHTML), 1);
                 chrome.storage.sync.set({
                     history: storage.history
                 }, () => {
                     displayNode.remove();
+                    displayNotification("Deleted!", "red");
                 });
             });
             copyInputNode.setAttribute("readonly", "true");
@@ -46,6 +47,7 @@
             copyButtonNode.addEventListener("click", () => {
                 copyInputNode.select();
                 document.execCommand("copy");
+                displayNotification("Copied!", "green");
             });
             containerNode.appendChild(textNode);
             containerNode.appendChild(buttonContainerNode);
@@ -59,4 +61,13 @@
             "text" : `${storage.history.length}`
         }); 
     });
+
+    const displayNotification = (text: string, color: string) => {
+        let notification = <HTMLElement> document.getElementById("notificationText");
+        notification.innerHTML = text;
+        notification.style.color = color;
+        setTimeout(() => {
+            notification.innerHTML = "";
+        }, 2000);
+    }
 })();
