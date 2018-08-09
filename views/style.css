@@ -24,13 +24,18 @@ body {
     padding-bottom: 1em;
 }
 
+.displayMore {
+    cursor: pointer;
+    color: dodgerblue;
+}
+
 .fa-copy,
 .fa-trash-alt {
     color: black;
     font-size: 1.3em;
     display: inline-block;
     padding-left: 1em;
-    padding-bottom: 2em;
+    padding-bottom: 1em;
 }
 
 .fa-copy:hover {

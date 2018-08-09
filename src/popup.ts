@@ -21,12 +21,13 @@
             let containerNode:HTMLElement = document.createElement("div");
             let buttonContainerNode:HTMLElement = document.createElement("div");
             let textNode:HTMLElement = document.createElement("h3");
-            let deleteNode:HTMLElement = document.createElement("a");
-            let copyButtonNode:HTMLElement = document.createElement("a");
+            let deleteNode:HTMLAnchorElement = document.createElement("a");
+            let copyButtonNode:HTMLAnchorElement = document.createElement("a");
             let copyInputNode: HTMLInputElement = document.createElement("input");
             let text: string = storage.history[i];
-            textNode.innerHTML = text.length > 200 ? `${text.substring(0,200)} ...` : text.substring(0,200);
+            textNode.innerHTML = text.length > 200 ? text.substring(0,150) : text;
             textNode.className = "copiedText";
+            if (text.length > 200) setDisplayText(textNode, text);
             deleteNode.className = "fas fa-trash-alt";
             deleteNode.addEventListener("click", (event) => {
                 let target = <HTMLElement> event.target;
@@ -70,4 +71,22 @@
             notification.innerHTML = "";
         }, 2000);
     }
+
+    const setDisplayText = (textNode: HTMLElement, text: string) => {
+        let displayMoreNode: HTMLAnchorElement = document.createElement("a");
+        displayMoreNode.className = "displayMore";
+        displayMoreNode.innerHTML = " ...more";
+        displayMoreNode.addEventListener("click", () => {
+            if (displayMoreNode.innerHTML == " ...more") {
+                textNode.innerHTML = text;
+                displayMoreNode.innerHTML = " less";
+            } else {
+                textNode.innerHTML = text.substring(0,150);
+                displayMoreNode.innerHTML = " ...more";
+            }
+            textNode.appendChild(displayMoreNode);
+        });
+        textNode.appendChild(displayMoreNode);
+    }
+
 })();
