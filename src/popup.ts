@@ -16,6 +16,23 @@
                 history: []
             })
         }
+        let search = <HTMLInputElement> document.getElementById("search");
+        search.addEventListener("input", () => {
+            if(search.value != ""){
+                let re: RegExp = new RegExp(search.value);
+                let filteredStorage: IStorage = {
+                    history: storage.history.filter((text: string) => text.match(re) != null)
+                }
+                clearPopups();
+                displayPopups(filteredStorage);
+            } else {
+                displayPopups(storage);
+            }
+        }); 
+        displayPopups(storage);
+    });
+
+    const displayPopups = (storage: IStorage) => {
         let content: Node = document.getElementById("content");
         for (let i = storage.history.length - 1; i >= 0; i--) {
             let containerNode:HTMLElement = document.createElement("div");
@@ -60,8 +77,15 @@
         }
         chrome.browserAction.setBadgeText({
             "text" : `${storage.history.length}`
-        }); 
-    });
+        });
+    }
+
+    const clearPopups = () => {
+        let content: Node = document.getElementById("content");
+        while (content.firstChild) {
+            content.removeChild(content.firstChild);
+        }
+    }
 
     const displayNotification = (text: string, color: string) => {
         let notification = <HTMLElement> document.getElementById("notificationText");

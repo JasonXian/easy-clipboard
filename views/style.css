@@ -48,6 +48,12 @@ body {
     cursor: pointer;
 }
 
+.fa-search {
+    font-size: 1.5em;
+    padding-right: 0.1em;
+    margin-bottom: 1em;
+}
+
 #header {
     position: fixed;
     top: 0;
@@ -56,7 +62,7 @@ body {
 }
 
 #headerPadding {
-    margin-bottom: 5em;
+    margin-bottom: 7em;
 }
 
 #title {
