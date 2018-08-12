@@ -1,36 +1,68 @@
+interface IStorage {
+    history: Array<string>,
+    bgColor: string,
+    txtColor: string,
+    autoCopy: boolean
+}
+
+interface ICopiedData {
+    content: string,
+    date: Date,
+    source: string,
+}
+
+
 (() => {
+    chrome.storage.sync.get(null, (storage: IStorage) => {
+        startHistory(storage);
+        let search = <HTMLInputElement> document.getElementById("search");
+        search.addEventListener("input", () => {
+            clearPopups();
+            if(search.value != ""){
+                let re: RegExp = new RegExp(search.value);
+                let filteredStorage: IStorage = {
+                    ...storage,
+                    history: storage.history.filter((text: string) => text.match(re) != null),
+                }
+                displayPopups(filteredStorage);
+            } else {
+                displayPopups(storage);
+            }
+        });
+        setUpDefaults(storage); 
+        displayPopups(storage);
+    });
 
-    interface IStorage {
-        history: Array<string>
-    }
-
-    interface ICopiedData {
-        content: string,
-        date: Date,
-        source: string,
-    }
-    
-    chrome.storage.sync.get(["history"], (storage: IStorage) => {
+    const startHistory = (storage: IStorage) => {
         if (!Array.isArray(storage.history)) {
             chrome.storage.sync.set({
                 history: []
             })
         }
-        let search = <HTMLInputElement> document.getElementById("search");
-        search.addEventListener("input", () => {
-            if(search.value != ""){
-                let re: RegExp = new RegExp(search.value);
-                let filteredStorage: IStorage = {
-                    history: storage.history.filter((text: string) => text.match(re) != null)
-                }
-                clearPopups();
-                displayPopups(filteredStorage);
-            } else {
-                displayPopups(storage);
-            }
-        }); 
-        displayPopups(storage);
-    });
+        if (!storage.bgColor) {
+            chrome.storage.sync.set({
+                bgColor: "#FFFF99"
+            })
+        }
+        if (!storage.bgColor) {
+            chrome.storage.sync.set({
+                txtColor: "#000000"
+            })
+        }
+        if (!storage.bgColor) {
+            chrome.storage.sync.set({
+                autoCopy: true
+            })
+        }
+    }
+
+    const setUpDefaults = (storage: IStorage) => {
+        let background = <HTMLBodyElement> document.getElementById("body");
+        background.style.backgroundColor = storage.bgColor || "#FFFF99";
+        background.style.color = storage.txtColor || "#000000";
+        let header = <HTMLDivElement> document.getElementById("header");
+        header.style.backgroundColor =storage.bgColor || "#FFFF99";
+    }
 
     const displayPopups = (storage: IStorage) => {
         let content: Node = document.getElementById("content");
@@ -61,6 +93,7 @@
             copyInputNode.setAttribute("readonly", "true");
             copyInputNode.className = "copyInput";
             copyInputNode.value = text;
+            copyInputNode.style.backgroundColor = storage.bgColor;
             copyButtonNode.className = "fas fa-copy";
             copyButtonNode.addEventListener("click", () => {
                 copyInputNode.select();
@@ -112,5 +145,4 @@
         });
         textNode.appendChild(displayMoreNode);
     }
-
 })();

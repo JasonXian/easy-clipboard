@@ -1,7 +1,6 @@
 body {
     font-family: 'Lato';
     width: 16.5em;
-    background-color: #FFFF99;
 }
 
 .buttonContainer {
@@ -17,8 +16,6 @@ body {
 
 .copyInput {
     width: 0.5px;
-    background-color: #FFFF99;
-    color: #FFFF99;
     cursor: default;
     border: 0;
     padding-bottom: 1em;
@@ -31,7 +28,6 @@ body {
 
 .fa-copy,
 .fa-trash-alt {
-    color: black;
     font-size: 1.3em;
     display: inline-block;
     padding-left: 1em;
@@ -58,7 +54,6 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: #FFFF99;
 }
 
 #headerPadding {

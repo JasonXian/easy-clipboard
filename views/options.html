@@ -1,10 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+<link rel="stylesheet" href="./bootstrap.min.css">
+<link rel="stylesheet" href="./options.css">
 <head>
     <title>Easy Clipboard Options Page</title>
 </head>
 <body>
-    <h1>Easy Clipboard Options</h1>
+    <div class="container">
+        <h1 class="mt-5">Easy Clipboard Options</h1>
+        <hr>
+        <div class="options">
+            <input type="color" id="bgColor">
+            <h3>Background Color</h3>
+        </div>
+        <div class="options">
+            <input type="color" id="txtColor">
+            <h3>Text Color</h3>
+        </div>
+        <div class="options">
+            <input type="checkbox" id="autoCopy">
+            <h3>Automatically copy to Easy Clipboard when using CTRL+C or (Right Click > Copy)</h3>
+        </div>
+    </div>
 </body>
 <script src="../src/options.js"></script>
 </html>

@@ -1,13 +1,14 @@
 {
     "manifest_version": 2,
     "name": "Easy Clipboard",
-    "version": "1.01",
+    "version": "1.2",
     "description": "Easy Clipboard allows you to quickly copy and paste text, urls and more, and store them safely in your browser for future use.",
     "icons": {
         "128": "./static/icon128.png",
         "48": "./static/icon48.png",
         "16": "./static/icon16.png"
     },
+    "options_page" : "./views/options.html",
     "browser_action": {
         "default_icon": "./static/icon16.png",
         "default_popup": "./views/popup.html"
@@ -16,6 +17,12 @@
         "scripts" : ["./src/eventPage.js"],
         "persistant" : false
     },
+    "content_scripts" : [
+        {
+            "matches" : ["<all_urls>"],
+            "js" : ["./src/contentScript.js"]
+        }
+    ],
     "permissions" : [
         "storage",
         "contextMenus"

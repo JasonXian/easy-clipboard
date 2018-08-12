@@ -1,6 +1,9 @@
 interface IStorage {
-    history: Array<String>
-}
+        history: Array<string>,
+        bgColor: string,
+        txtColor: string,
+        autoCopy: boolean
+    }
 
 var contextMenuItem = {
     id : "easyCopy",
@@ -23,7 +26,9 @@ chrome.contextMenus.onClicked.addListener((clickData) => {
 });
 
 chrome.storage.onChanged.addListener((changeEvent, storageName) => {
-    chrome.browserAction.setBadgeText({
-        "text" : `${changeEvent.history.newValue.length}`
-    });
+    if (changeEvent.history) {
+        chrome.browserAction.setBadgeText({
+            "text" : `${changeEvent.history.newValue.length}`
+        });
+    } 
 });
