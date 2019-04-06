@@ -1,16 +1,4 @@
-interface IStorage {
-    history: Array<string>,
-    bgColor: string,
-    txtColor: string,
-    autoCopy: boolean
-}
-
-interface ICopiedData {
-    content: string,
-    date: Date,
-    source: string,
-}
-
+/// <reference path="./interfaces.d.ts" />
 
 (() => {
     chrome.storage.sync.get(null, (storage: IStorage) => {
@@ -54,6 +42,11 @@ interface ICopiedData {
                 autoCopy: true
             })
         }
+        if (!storage.lineCount) {
+            chrome.storage.sync.set({
+                lineCount: 5
+            })
+        }
     }
 
     const setUpDefaults = (storage: IStorage) => {
@@ -65,6 +58,7 @@ interface ICopiedData {
     }
 
     const displayPopups = (storage: IStorage) => {
+        const LINELENGTH = 26;
         let content: Node = document.getElementById("content");
         for (let i = storage.history.length - 1; i >= 0; i--) {
             let containerNode:HTMLElement = document.createElement("div");
@@ -74,9 +68,9 @@ interface ICopiedData {
             let copyButtonNode:HTMLAnchorElement = document.createElement("a");
             let copyInputNode: HTMLInputElement = document.createElement("input");
             let text: string = storage.history[i];
-            textNode.innerHTML = text.length > 200 ? text.substring(0,150) : text;
+            textNode.innerHTML = text.substring(0, storage.lineCount * LINELENGTH);
             textNode.className = "copiedText";
-            if (text.length > 200) setDisplayText(textNode, text);
+            if (text.length > storage.lineCount * LINELENGTH) setDisplayText(textNode, text, storage.lineCount, LINELENGTH);
             deleteNode.className = "fas fa-trash-alt";
             deleteNode.addEventListener("click", (event) => {
                 let target = <HTMLElement> event.target;
@@ -129,7 +123,7 @@ interface ICopiedData {
         }, 2000);
     }
 
-    const setDisplayText = (textNode: HTMLElement, text: string) => {
+    const setDisplayText = (textNode: HTMLElement, text: string, lineCount: number, LINELENGTH: number) => {
         let displayMoreNode: HTMLAnchorElement = document.createElement("a");
         displayMoreNode.className = "displayMore";
         displayMoreNode.innerHTML = " ...more";
@@ -138,7 +132,7 @@ interface ICopiedData {
                 textNode.innerHTML = text;
                 displayMoreNode.innerHTML = " less";
             } else {
-                textNode.innerHTML = text.substring(0,150);
+                textNode.innerHTML = text.substring(0, lineCount * LINELENGTH);
                 displayMoreNode.innerHTML = " ...more";
             }
             textNode.appendChild(displayMoreNode);

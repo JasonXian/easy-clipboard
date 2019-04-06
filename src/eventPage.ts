@@ -1,9 +1,4 @@
-interface IStorage {
-        history: Array<string>,
-        bgColor: string,
-        txtColor: string,
-        autoCopy: boolean
-    }
+/// <reference path="./interfaces.d.ts" />
 
 var contextMenuItem = {
     id : "easyCopy",
