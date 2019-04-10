@@ -1,14 +1,14 @@
-/// <reference path="./interfaces.d.ts" />
+import { IChromeStorage } from '../interfaces';
 
 (() => {
-    chrome.storage.sync.get(null, (storage: IStorage) => {
+    chrome.storage.sync.get(null, (storage: IChromeStorage) => {
         startHistory(storage);
         let search = <HTMLInputElement> document.getElementById("search");
         search.addEventListener("input", () => {
             clearPopups();
             if(search.value != ""){
                 let re: RegExp = new RegExp(search.value);
-                let filteredStorage: IStorage = {
+                let filteredStorage: IChromeStorage = {
                     ...storage,
                     history: storage.history.filter((text: string) => text.match(re) != null),
                 }
@@ -21,7 +21,7 @@
         displayPopups(storage);
     });
 
-    const startHistory = (storage: IStorage) => {
+    const startHistory = (storage: IChromeStorage) => {
         if (!Array.isArray(storage.history)) {
             chrome.storage.sync.set({
                 history: []
@@ -49,7 +49,7 @@
         }
     }
 
-    const setUpDefaults = (storage: IStorage) => {
+    const setUpDefaults = (storage: IChromeStorage) => {
         let background = <HTMLBodyElement> document.getElementById("body");
         background.style.backgroundColor = storage.bgColor || "#FFFF99";
         background.style.color = storage.txtColor || "#000000";
@@ -57,7 +57,7 @@
         header.style.backgroundColor =storage.bgColor || "#FFFF99";
     }
 
-    const displayPopups = (storage: IStorage) => {
+    const displayPopups = (storage: IChromeStorage) => {
         const LINELENGTH = 26;
         let content: Node = document.getElementById("content");
         for (let i = storage.history.length - 1; i >= 0; i--) {

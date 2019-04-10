@@ -1,13 +1,21 @@
-interface IStorage {
+export interface IChromeStorage extends IUserOptions {
     history: Array<string>,
-    bgColor: string,
-    txtColor: string,
-    autoCopy: boolean,
-    lineCount: number
 }
 
-interface ICopiedData {
+export interface IReduxStore {
+    history: Array<string>,
+    options: IUserOptions,
+}
+
+export interface ICopiedData {
     content: string,
     date: Date,
     source: string,
+}
+
+export interface IUserOptions {
+    backgroundColor: string,
+    textColor: string,
+    autoCopy: boolean,
+    lineCount: number,
 }
