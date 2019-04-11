@@ -17,7 +17,6 @@ class NumberSelector extends Component <INumberSelectorProps> {
     render (){
         return(
             <div className={this.props.className}>
-            <input type='number' id='lineCount' min='1'/>
                 <input 
                     type='number'
                     min='1'

@@ -24,7 +24,7 @@ module.exports = {
       'babel-polyfill',
       `${PAGES_PATH}/background/background.ts`,
     ],
-    contentScripts: [
+    contentScript: [
       'babel-polyfill',
       `${PAGES_PATH}/contentScript/contentScript.ts`,
     ],

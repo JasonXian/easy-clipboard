@@ -44,7 +44,7 @@ class OptionsList extends Component <IOptionsListProps, IOptionsListState> {
         options[key] = number;
         this.props.updateOptions(this.state.options);
     }
-
+    
     render (){
         return(
             <div className='container'>
@@ -64,7 +64,7 @@ class OptionsList extends Component <IOptionsListProps, IOptionsListState> {
                 />
                 <CheckBox 
                     className='options'
-                    value={this.props.options.autoCopy}
+                    checked={this.props.options.autoCopy}
                     label='Automatically copy to Easy Clipboard when using CTRL+C (Windows) or CMD+C (OSX) or (Right Click > Copy)'
                     onChange={(value) => this.onCheckBoxChange('autoCopy', value)}
                 />
@@ -72,7 +72,7 @@ class OptionsList extends Component <IOptionsListProps, IOptionsListState> {
                     className='options'
                     lineCount={this.props.options.lineCount}
                     label='Number of lines shown in preview for each stored copy'
-                    onChange={(lineCount) => this.onNumberSelectorChange('autoCopy', lineCount)}
+                    onChange={(lineCount) => this.onNumberSelectorChange('lineCount', lineCount)}
                 />
             </div>
         );

@@ -3,7 +3,7 @@ import { Component } from 'react';
 
 interface ICheckBoxProps {
     className: string,
-    value: boolean,
+    checked: boolean,
     label: string,
     onChange: (value: boolean) => void,
 }
@@ -19,7 +19,7 @@ class CheckBox extends Component <ICheckBoxProps> {
             <div className={this.props.className}>
                 <input 
                     type='checkbox' 
-                    checked={this.props.value}
+                    checked={this.props.checked}
                     onChange={event => this.props.onChange(event.target.checked)}
                 />
                 <h3>{this.props.label}</h3>

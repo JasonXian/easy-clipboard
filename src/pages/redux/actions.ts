@@ -10,10 +10,9 @@ interface IUpdateOptionsAction {
 export type OptionsActionTypes = IUpdateOptionsAction;
 
 export const updateOptions = (options: IUserOptions) => {
-    chrome.storage.sync.set(options, () => {
-        return {
-            type: UPDATE_OPTIONS,
-            options,
-        }
-    });
+    chrome.storage.sync.set(options);
+    return {
+        type: UPDATE_OPTIONS,
+        options,
+    }
 };
