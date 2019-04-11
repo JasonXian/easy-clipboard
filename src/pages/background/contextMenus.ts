@@ -4,9 +4,9 @@ class ContextMenu {
 
     public initContextMenu () {
         chrome.contextMenus.create({
-            id : "easyCopy",
-            title : "Copy to Easy Clipboard",
-            contexts : ["selection"]
+            id: "easyCopy",
+            title: "Copy to Easy Clipboard",
+            contexts: ["selection"],
         });
         
         chrome.contextMenus.onClicked.addListener((clickData) => {

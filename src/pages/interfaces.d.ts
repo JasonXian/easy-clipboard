@@ -1,9 +1,9 @@
 export interface IChromeStorage extends IUserOptions {
-    history: Array<string>,
+    clipboard: string[],
 }
 
 export interface IReduxStore {
-    history: Array<string>,
+    clipboard: string[],
     options: IUserOptions,
 }
 

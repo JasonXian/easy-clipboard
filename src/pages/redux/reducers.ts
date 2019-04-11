@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux';
 import {
     UPDATE_OPTIONS,
-    OptionsActionTypes
+    OptionsActionTypes,
+    UPDATE_CLIPBOARD,
+    ClipboardActionTypes
 } from './actions';
 
 const options = ((state = {
@@ -18,6 +20,16 @@ const options = ((state = {
     }
 });
 
+const clipboard = ((state = [], action: ClipboardActionTypes) => {
+    switch (action.type) {
+        case UPDATE_CLIPBOARD:
+            return action.clipboard
+        default:
+            return state
+    }
+});
+
 export default combineReducers({
     options,
+    clipboard,
 });

@@ -1,5 +1,6 @@
 import { IUserOptions } from '../interfaces';
 
+// Options Actions
 export const UPDATE_OPTIONS = 'UPDATE_OPTIONS';
 
 interface IUpdateOptionsAction {
@@ -16,3 +17,22 @@ export const updateOptions = (options: IUserOptions) => {
         options,
     }
 };
+
+// Clipboard Actions
+export const UPDATE_CLIPBOARD = 'UPDATE_CLIPBOARD';
+
+interface IUpdateClipboardAction {
+    type: typeof UPDATE_CLIPBOARD,
+    clipboard: string[],
+}
+
+export type ClipboardActionTypes = IUpdateClipboardAction;
+
+export const updateClipboard = (clipboard: string[]) => {
+    chrome.storage.sync.set({ clipboard, });
+    return {
+        type: UPDATE_CLIPBOARD,
+        clipboard,
+    }
+};
+

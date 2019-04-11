@@ -16,4 +16,5 @@ chrome.runtime.onInstalled.addListener(() => {
     startupScripts();
 });
 
+// if chrome browser closes the state should be backed up from chrome storage, not defaults do a first install flag for startup scripts
 chrome.runtime.onStartup.addListener(startupScripts);

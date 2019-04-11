@@ -14,38 +14,31 @@ interface IOptionsListProps {
     updateOptions: (options: IUserOptions) => void,
 }
 
-interface IOptionsListState {
-    options: IUserOptions,
-}
-
-class OptionsList extends Component <IOptionsListProps, IOptionsListState> {
+class OptionsList extends Component <IOptionsListProps> {
 
     constructor (props: IOptionsListProps) {
         super(props);
-        this.state = {
-            options: this.props.options,
-        }
     }
 
     onColorChange (key: string, color: string) {
-        let options = this.state.options;
+        let options = this.props.options;
         options[key] = color;
-        this.props.updateOptions(this.state.options);
+        this.props.updateOptions(options);
     }
 
     onCheckBoxChange (key: string, value: boolean) {
-        let options = this.state.options;
+        let options = this.props.options;
         options[key] = value;
-        this.props.updateOptions(this.state.options);
+        this.props.updateOptions(options);
     }
 
     onNumberSelectorChange (key: string, number: number) {
-        let options = this.state.options;
+        let options = this.props.options;
         options[key] = number;
-        this.props.updateOptions(this.state.options);
+        this.props.updateOptions(options);
     }
     
-    render (){
+    render () {
         return(
             <div className='container'>
                 <h1 className='mt-5'>Easy Clipboard Options</h1>
