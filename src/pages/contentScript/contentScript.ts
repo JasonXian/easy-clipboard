@@ -19,4 +19,5 @@ class ContentScript {
 
 }
 
-export default new ContentScript();
+const contentScript = new ContentScript();
+contentScript.initContentScript();

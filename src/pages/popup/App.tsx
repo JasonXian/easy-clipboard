@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { Component } from 'react';
-import OptionsList from './containers/OptionsList';
+import PopupContainer from './containers/PopupContainer';
 
 class App extends Component {
     render(){
         return(
             <div>
-                <OptionsList />
+                <PopupContainer />
             </div>
         );
     }

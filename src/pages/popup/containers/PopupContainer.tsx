@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Component } from 'react';
-import '../static/bootstrap.min.css';
-import './OptionsList.css';
+import '../../../static/bootstrap.min.css';
+import './PopupContainer.css';
 
 class OptionsList extends Component {
     render(){

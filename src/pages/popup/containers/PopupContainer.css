@@ -1,3 +1,12 @@
+h3 {
+    display: inline;
+}
+
+input {
+    width: 3em;
+    margin-right: 1em;
+}
+
 body {
     font-family: 'Lato';
     width: 16.5em;

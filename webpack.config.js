@@ -24,6 +24,10 @@ module.exports = {
       'babel-polyfill',
       `${PAGES_PATH}/background/background.ts`,
     ],
+    contentScripts: [
+      'babel-polyfill',
+      `${PAGES_PATH}/contentScript/contentScript.ts`,
+    ],
     popup: [
       'babel-polyfill',
       `${PAGES_PATH}/popup/index.tsx`,
@@ -89,6 +93,7 @@ module.exports = {
     ...generateHtmlPlugins(
       [
         'background',
+        'contentScript',
         'popup',
         'options'
       ]

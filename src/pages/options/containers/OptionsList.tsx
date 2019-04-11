@@ -6,7 +6,7 @@ import CheckBox from '../components/CheckBox';
 import NumberSelector from '../components/NumberSelector';
 import { updateOptions } from '../../redux/actions';
 import { IReduxStore, IUserOptions } from '../../interfaces';
-import '../static/bootstrap.min.css';
+import '../../../static/bootstrap.min.css';
 import './OptionsList.css';
 
 interface IOptionsListProps {
