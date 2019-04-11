@@ -1,6 +1,13 @@
-import { IChromeStorage } from '../interfaces';
+import { Store } from 'webext-redux';
+import { IReduxStore } from '../interfaces';
+import { updateClipboard } from '../redux/actions';
 
 class ContextMenu {
+    store: Store;
+
+    constructor (store) {
+        this.store = store;
+    }
 
     public initContextMenu () {
         chrome.contextMenus.create({
@@ -8,28 +15,16 @@ class ContextMenu {
             title: "Copy to Easy Clipboard",
             contexts: ["selection"],
         });
-        
         chrome.contextMenus.onClicked.addListener((clickData) => {
             if (clickData.menuItemId == "easyCopy" && clickData.selectionText) {
-                chrome.storage.sync.get(["history"], (storage: IChromeStorage) => {
-                    if (!Array.isArray(storage.history)) storage.history = [];
-                    if (clickData.selectionText) storage.history.push(clickData.selectionText.replace(/</g, "&lt;").replace(/>/g, "&gt;"));
-                    chrome.storage.sync.set({
-                        history: storage.history
-                    });
-                });
+                const state: IReduxStore = this.store.getState();
+                const { clipboard } = state;
+                if (clickData.selectionText) clipboard.push(clickData.selectionText.replace(/</g, "&lt;").replace(/>/g, "&gt;"));
+                this.store.dispatch(updateClipboard(clipboard));
             }
-        });
-        
-        chrome.storage.onChanged.addListener((changeEvent, storageName) => {
-            if (changeEvent.history) {
-                chrome.browserAction.setBadgeText({
-                    "text" : `${changeEvent.history.newValue.length}`
-                });
-            } 
         });
     }
 
 }
 
-export default new ContextMenu();
+export default ContextMenu;
