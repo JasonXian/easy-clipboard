@@ -37,7 +37,6 @@ module.exports = {
       `${PAGES_PATH}/options/index.tsx`,
     ]
   },
-  devtool: 'cheap-module-source-map',
   output: {
     path: path.resolve('dist/pages'),
     filename: '[name].js'
