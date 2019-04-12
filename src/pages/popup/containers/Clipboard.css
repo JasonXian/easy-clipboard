@@ -1,0 +1,15 @@
+.title {
+    display: inline-block;
+}
+
+.notification {
+    display: inline-block;
+}
+
+.icon-cog {
+    display: inline-block;
+}
+
+.icon-cog:hover {
+    cursor: pointer;
+}

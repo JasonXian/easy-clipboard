@@ -1,0 +1,26 @@
+.icon-copy:hover {
+    color: green;
+    cursor: pointer;
+}
+
+.icon-trash:hover {
+    color: red;
+    cursor: pointer;
+}
+
+.input-copy {
+    width: 0.5px;
+    cursor: default;
+    border: 0;
+    position: absolute;
+    right: 100px;
+}
+
+.input-copy:focus {
+    outline-width: 0;
+}
+
+.display-more-text {
+    cursor: pointer;
+    color: dodgerblue;
+}
