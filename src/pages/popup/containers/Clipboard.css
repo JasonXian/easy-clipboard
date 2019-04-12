@@ -1,79 +1,15 @@
-h3 {
-    display: inline;
-}
-
-input {
-    width: 3em;
-    margin-right: 1em;
-}
-
-body {
-    font-family: 'Lato';
-    width: 16.5em;
-}
-
-.buttonContainer {
-    width: 15%;
+.title {
     display: inline-block;
 }
 
-.copiedText {
-    width: 85%;
+.notification {
     display: inline-block;
-    margin: 0;
 }
 
-.copyInput {
-    width: 0.5px;
-    cursor: default;
-    border: 0;
-    padding-bottom: 1em;
-}
-
-.displayMore {
-    cursor: pointer;
-    color: dodgerblue;
-}
-
-.fa-copy,
-.fa-trash-alt {
-    font-size: 1.3em;
+.icon-cog {
     display: inline-block;
-    padding-left: 1em;
-    padding-bottom: 1em;
 }
 
-.fa-copy:hover {
-    color: green;
+.icon-cog:hover {
     cursor: pointer;
-}
-
-.fa-trash-alt:hover {
-    color: red;
-    cursor: pointer;
-}
-
-.fa-search {
-    font-size: 1.5em;
-    padding-right: 0.1em;
-    margin-bottom: 1em;
-}
-
-#header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-}
-
-#headerPadding {
-    margin-bottom: 7em;
-}
-
-#title {
-    display: inline-flex;
-}
-
-#notificationText {
-    display: inline-flex;
-    margin-left: 2.5em;
 }

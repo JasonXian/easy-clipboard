@@ -1,24 +1,18 @@
-import { Store } from 'redux';
-import { IReduxStore } from '../interfaces';
-import { updateClipboard } from '../redux/actions';
-import store from '../redux/store';
+import { IChromeStorage } from "../interfaces";
 
 class ContentScript {
-    store: Store;
-
-    constructor () {
-        this.store = store;
-    }
-    
     public initContentScript () {
-        document.addEventListener("copy", (event: ClipboardEvent) => {
-            const state: IReduxStore = this.store.getState();
-            const { clipboard, options } = state;
-            if (options.autoCopy) {
-                const selection = window.getSelection();
-                if (selection) clipboard.push(selection.toString().replace(/</g, "&lt;").replace(/>/g, "&gt;"));
-                this.store.dispatch(updateClipboard(clipboard));
-            }
+        document.addEventListener('copy', (event: ClipboardEvent) => {
+            chrome.storage.sync.get(['autoCopy'], (result: IChromeStorage) => {
+                if (result.autoCopy) {
+                    const selection = window.getSelection();
+                    if (selection) {
+                        chrome.runtime.sendMessage({
+                            selection: selection.toString().replace(/</g, '&lt;').replace(/>/g, '&gt;'),
+                        });
+                    }
+                }
+            });
         });
     }
 

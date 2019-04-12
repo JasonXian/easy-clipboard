@@ -31,7 +31,23 @@ const startupScripts = (isFirst: boolean) => {
             store.dispatch(updateClipboard(result.clipboard));
             store.dispatch(updateOptions(options));
         });
+    } else {
+        store.dispatch(updateOptions({
+            backgroundColor: "#FFFF99",
+            textColor: "#000000",
+            autoCopy: true,
+            lineCount: 5,
+        }));
     }
+    chrome.runtime.onMessage.addListener((request, sender) => {
+        if (chrome.runtime.id == sender.id) {
+            if (request.selection) {
+                const { clipboard } = store.getState();
+                clipboard.push(request.selection);
+                store.dispatch(updateClipboard(clipboard));
+            }
+        }
+    });
     const contextMenu = new ContextMenu(store);
     contextMenu.initContextMenu();
 }
@@ -43,5 +59,5 @@ chrome.runtime.onInstalled.addListener(() => {
 
 // if chrome browser closes the state should be backed up from chrome storage, not defaults do a first install flag for startup scripts
 chrome.runtime.onStartup.addListener(() => {
-    startupScripts(false)
+    startupScripts(false);
 });

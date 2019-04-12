@@ -13,3 +13,8 @@ Feel free to submit a pull request if you have features that you want to add to 
 3. Turn on `developer mode` in the top right hand corner
 4. Click on `Load unpacked`
 5. Select the entire `dist` folder
+
+# TODO
+
+1. Install linter and clean up code
+2. Test Cases

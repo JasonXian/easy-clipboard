@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Component } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import './SearchBar.css';
 
 interface ISearchBarProps {
     search: string,
@@ -15,15 +16,13 @@ class SearchBar extends Component <ISearchBarProps> {
 
     render (){
         return(
-            <div>
-                <div>
-                    <FontAwesomeIcon icon='search' />
-                    <input 
-                        type='text'
-                        value={this.props.search}
-                        onChange={event => this.props.onChange(event.target.value)}
-                    />
-                </div>
+            <div className='search-wrapper'>
+                <FontAwesomeIcon icon='search' />
+                <input 
+                    type='text'
+                    value={this.props.search}
+                    onChange={event => this.props.onChange(event.target.value)}
+                />
             </div>
         );
     }
