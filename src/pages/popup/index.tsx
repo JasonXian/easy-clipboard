@@ -13,7 +13,8 @@ const store = new Store({
 });
 
 store.ready().then(() => {
-    const mountNode = document.createElement('div');
+    let mountNode = document.createElement('div');
+    mountNode.id = 'root';
     document.body.appendChild(mountNode);
     render(
         <Provider store={store}>

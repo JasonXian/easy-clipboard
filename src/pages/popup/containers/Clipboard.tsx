@@ -49,6 +49,9 @@ class Clipboard extends Component <IClipboardProps, IClipboardState> {
     }
 
     private mapClipboardToNotes (clipboard: string[]) {
+        if (clipboard.length == 0) {
+            return <p style={{textAlign:'center'}}>Saved text snippits will appear here!</p>
+        }
         return clipboard.map((text, index) => (
             <Note
                 backgroundColor={this.props.backgroundColor}
@@ -62,26 +65,25 @@ class Clipboard extends Component <IClipboardProps, IClipboardState> {
     }
 
     render () {
-        const optionStyles = {
-            backgroundColor: this.props.backgroundColor,
-            color: this.props.textColor,
-        }
         const re = new RegExp(this.state.search);
         const clipboard = this.props.clipboard.filter(text => text.match(re) != null);
         return(
-            <div style={optionStyles}>
-                <h2 className='title'>Easy Clipboard</h2>
-                <p className='notification'>{this.state.notification}</p>
+            <div id="main-container">
+                <div id="header">
+                    <h2 className='title'>
+                        Easy Clipboard
+                        <span className="title-line"></span>    
+                    </h2>
+                    <button
+                        onClick={event => chrome.runtime.openOptionsPage()}>
+                        <FontAwesomeIcon icon='cog' />
+                    </button>
+                </div>
                 <Searchbar 
                     search={this.state.search}
                     onChange={(search: string) => this.setState({ search, })}
                 />
-                <div
-                    className='icon-cog'
-                    onClick={event => chrome.runtime.openOptionsPage()}
-                >
-                    <FontAwesomeIcon icon='cog' />
-                </div>
+                <p className='notification'>{this.state.notification}</p>
                 { this.mapClipboardToNotes(clipboard) }
             </div>
         );

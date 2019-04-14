@@ -1,26 +1,55 @@
+.note-container {
+    align-items: center;
+    border-radius: 12px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2);
+    display: flex;
+    margin: 0 auto 24px;
+    padding: 24px;
+}
+
+.note-text {
+    height: fit-content;
+    width: 72%;
+}
+
+.note-buttons {
+    height: fit-content;
+}
+.note-buttons button {
+    float: right;
+    font-size: 18px;
+}
+.note-buttons button:first-of-type {
+    margin-bottom: 16px;
+}
+
+.icon-copy {
+    border-color: rgba(236,214,138,0.3);
+    color: rgb(236,214,138);
+}
 .icon-copy:hover {
-    color: green;
-    cursor: pointer;
+    background: rgba(236,214,138,0.15);
 }
 
+.icon-trash {
+    border-color: rgba(231,151,151,0.3);
+    color: rgb(231,151,151);
+}
 .icon-trash:hover {
-    color: red;
-    cursor: pointer;
-}
-
-.input-copy {
-    width: 0.5px;
-    cursor: default;
-    border: 0;
-    position: absolute;
-    right: 100px;
-}
-
-.input-copy:focus {
-    outline-width: 0;
+    background: rgba(231,151,151,0.15);
 }
 
 .display-more-text {
+    color: rgb(113,163,199);
     cursor: pointer;
-    color: dodgerblue;
+    margin-top: 6px;
+}
+
+/* psudo element, keep hidden */
+.input-copy {
+    visibility: hidden;
+    height: 0px;
+    border: none;
+    padding: 0;
+    width: 0px;
 }
