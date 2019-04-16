@@ -1,0 +1,13 @@
+.number-selector-text {
+  display: inline;
+  font-size: 1em;
+}
+
+.number-input {
+  width: 2.5em;
+  text-align: center;
+}
+.number-input::-webkit-inner-spin-button, 
+.number-input::-webkit-outer-spin-button { 
+  display: none;
+}
