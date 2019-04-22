@@ -8,25 +8,49 @@ interface INumberSelectorProps {
     onChange: (lineCount: number) => void,
 }
 
-class NumberSelector extends Component <INumberSelectorProps> {
+class NumberSelector extends Component <INumberSelectorProps, any> {
 
     constructor (props: INumberSelectorProps) {
         super(props);
+        
+        this.state = {
+            value: this.props.lineCount
+        }
+    }
+
+    changeInputValue = (event:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        const btnText = event.currentTarget.innerHTML || undefined;
+
+        if (btnText == "-" && this.state.value > 1) {
+            this.setState({
+                value: this.state.value-1
+            })
+        } else if (btnText == "+") {
+            this.setState({
+                value: this.state.value+1
+            })
+        }
     }
 
     render (){
         return(
             <React.Fragment>
                 <span className="number-selector">
-                    <button className="decrease-btn">-</button>
+                    <button
+                        className="decrease-btn"
+                        onClick={this.changeInputValue}
+                    >-</button>
                     <input
-                        className="number-input"
+                        id="number-input"
                         type='number'
                         min='1'
-                        value={this.props.lineCount}
+                        value={this.state.value}
                         onChange={event => this.props.onChange(event.target.valueAsNumber)}
                     />
-                    <button className="increase-btn">+</button>
+                    <button
+                        className="increase-btn"
+                        onClick={this.changeInputValue}
+                    >+</button>
                 </span>
                 <h6 className="number-selector-text">{this.props.label}</h6>
             </React.Fragment>

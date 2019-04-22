@@ -3,11 +3,32 @@
   font-size: 1em;
 }
 
-.number-input {
-  width: 2.5em;
+#number-input {
+  background: rgba(155,155,155,0.15);
+  border: none;
+  padding: 3px;
   text-align: center;
+  width: 2.5em;
 }
-.number-input::-webkit-inner-spin-button, 
-.number-input::-webkit-outer-spin-button { 
+#number-input::-webkit-inner-spin-button, 
+#number-input::-webkit-outer-spin-button { 
   display: none;
+}
+
+.number-selector button {
+  background: rgba(155,155,155,0.3);
+  border: none;
+  padding: 3px;
+  width: 26px;
+}
+.number-selector button:hover {
+  background: rgba(155,155,155,0.45);
+}
+.decrease-btn {
+  border-bottom-left-radius: 6px;
+  border-top-left-radius: 6px;
+}
+.increase-btn {
+  border-bottom-right-radius: 6px;
+  border-top-right-radius: 6px;
 }

@@ -21,3 +21,8 @@
 .options-grid label, .options-grid span {
     place-self: center;
 }
+
+h6 {
+    margin: 0;
+    padding-top: 0.3em;
+}
