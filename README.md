@@ -17,4 +17,4 @@ Feel free to submit a pull request if you have features that you want to add to 
 # TODO
 
 1. Install linter and clean up code
-2. Test Cases
+2. Test cases :)

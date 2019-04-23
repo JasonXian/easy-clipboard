@@ -1,7 +1,7 @@
 {
   "name": "easy-clipboard",
   "description": "chrome extension for easy copy and pasting",
-  "version": "1.5.0",
+  "version": "2.0.0",
   "author": "Jason Xian",
   "license": "ISC",
   "scripts": {
