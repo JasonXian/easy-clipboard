@@ -41,32 +41,22 @@ class OptionsList extends Component <IOptionsListProps> {
     render () {
         return(
             <div className='container'>
-                <h1 className='mt-5'>Easy Clipboard Options</h1>
-                <hr/>
-                <ColorSelector
-                    className='options'
-                    color={this.props.options.backgroundColor}
-                    label='Background Color'
-                    onChange={(color) => this.onColorChange('backgroundColor', color)}
-                />
-                <ColorSelector
-                    className='options'
-                    color={this.props.options.textColor}
-                    label='Text Color'
-                    onChange={(color) => this.onColorChange('textColor', color)}
-                />
-                <CheckBox 
-                    className='options'
-                    checked={this.props.options.autoCopy}
-                    label='Automatically copy to Easy Clipboard when using CTRL+C (Windows) or CMD+C (OSX) or (Right Click > Copy)'
-                    onChange={(value) => this.onCheckBoxChange('autoCopy', value)}
-                />
-                <NumberSelector
-                    className='options'
-                    lineCount={this.props.options.lineCount}
-                    label='Number of lines shown in preview for each stored copy'
-                    onChange={(lineCount) => this.onNumberSelectorChange('lineCount', lineCount)}
-                />
+                <h1 className='title'>
+                    Easy Clipboard Options <br/>
+                    <span className="title-line"></span>  
+                </h1>
+                <div className="options-grid">
+                    <CheckBox 
+                        checked={this.props.options.autoCopy}
+                        label='Automatically add to Clipboard when using copying text (CTRL/CMD+C)'
+                        onChange={(value) => this.onCheckBoxChange('autoCopy', value)}
+                    />
+                    <NumberSelector
+                        lineCount={this.props.options.lineCount}
+                        label='Number of lines shown in preview for each stored copy'
+                        onChange={(lineCount) => this.onNumberSelectorChange('lineCount', lineCount)}
+                    />
+                </div>
             </div>
         );
     }

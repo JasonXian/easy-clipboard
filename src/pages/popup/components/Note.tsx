@@ -18,7 +18,7 @@ interface INoteState {
 class Note extends Component <INoteProps, INoteState> {
     
     private copyInput: React.RefObject<HTMLInputElement>;
-    private lineLength = 26;
+    private lineLength = 18;
 
     constructor (props: INoteProps) {
         super(props);
@@ -36,39 +36,34 @@ class Note extends Component <INoteProps, INoteState> {
     }
 
     render () {
-        const inputStyle = {
-            backgroundColor: this.props.backgroundColor,
-        }
         const displayText = this.state.isDisplayingMore ? this.props.text : this.props.text.substring(0, this.props.lineCount * this.lineLength);
         return(
-            <div className='container'>
-                <div>
-                    <div>
-                        <p>{displayText}</p>
-                        {
-                            this.props.text.length > this.props.lineCount * this.lineLength &&
-                            <p 
-                                className='display-more-text'
-                                onClick={event => this.setState({ isDisplayingMore: !this.state.isDisplayingMore })}
-                            >
-                                { this.state.isDisplayingMore ? '...see less': '...see more' }
-                            </p>
-                        }
-                    </div>
-                    <input
-                        className='input-copy'
-                        type='text'
-                        style={inputStyle}
-                        value={this.props.text}
-                        ref={this.copyInput}
-                        readOnly={true}
-                    />
+            <div className='note-container'>
+                <input
+                    className='input-copy'
+                    type='text'
+                    value={this.props.text}
+                    ref={this.copyInput}
+                    readOnly={true}
+                />
+                <div className="note-text">
+                    <p>{displayText}</p>
+                    {
+                        this.props.text.length > this.props.lineCount * this.lineLength &&
+                        <p 
+                            className='display-more-text'
+                            onClick={event => this.setState({ isDisplayingMore: !this.state.isDisplayingMore })}>
+                            { this.state.isDisplayingMore ? '... Show less': '... Show more' }
+                        </p>
+                    }
                 </div>
-                <div onClick={event => this.onCopy()} >
-                    <FontAwesomeIcon icon='copy' className='icon-copy' />
-                </div>
-                <div onClick={event => this.props.onDelete()} >
-                    <FontAwesomeIcon icon='trash' className='icon-trash' />
+                <div className="note-buttons">
+                    <button className='icon-trash' onClick={event => this.props.onDelete()} >
+                        <FontAwesomeIcon icon='trash' />
+                    </button>
+                    <button className='icon-copy' onClick={event => this.onCopy()} >
+                        <FontAwesomeIcon icon='copy' />
+                    </button>
                 </div>
             </div>
         );

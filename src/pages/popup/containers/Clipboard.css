@@ -1,15 +1,25 @@
+#main-container {
+    padding: 12px 18px;
+    height: inherit;
+    width: inherit;
+}
+
+#header {
+    display: flex;
+    margin-bottom: 12px;
+}
+
 .title {
-    display: inline-block;
+    align-self: flex-end;
+    color: rgb(111,111,111);
+    font-weight: bold;
+    line-height: 18px;
+    margin: 0;
 }
-
-.notification {
+.title-line {
     display: inline-block;
-}
-
-.icon-cog {
-    display: inline-block;
-}
-
-.icon-cog:hover {
-    cursor: pointer;
+    background-color: rgba(155,155,155, 0.3);
+    margin-top: 6px;
+    height: 4px;
+    width: 210px;
 }

@@ -1,8 +1,28 @@
-h3 {
-    display: inline;
+.title {
+    line-height: 0.6em;
+    margin-top: 60px;
+}
+.title-line {
+    display: inline-block;
+    background-color: rgba(155,155,155, 0.3);
+    margin-top: 6px;
+    height: 5px;
+    width: 11.6em;
 }
 
-input {
-    width: 3em;
-    margin-right: 1em;
+.options-grid {
+    display: grid;
+    grid-column-gap: 1.6em;
+    grid-row-gap: 1.6em;
+    grid-template-columns: max-content auto;
+    margin-top: 2em;
+}
+
+.options-grid label, .options-grid span {
+    place-self: center;
+}
+
+h6 {
+    margin: 0;
+    padding-top: 0.3em;
 }

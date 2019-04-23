@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Component } from 'react';
+import './CheckBox.css';
 
 interface ICheckBoxProps {
-    className: string,
     checked: boolean,
     label: string,
     onChange: (value: boolean) => void,
@@ -16,14 +16,17 @@ class CheckBox extends Component <ICheckBoxProps> {
 
     render (){
         return(
-            <div className={this.props.className}>
-                <input 
-                    type='checkbox' 
-                    checked={this.props.checked}
-                    onChange={event => this.props.onChange(event.target.checked)}
-                />
-                <h3>{this.props.label}</h3>
-            </div>
+            <React.Fragment>
+                <label className="toggle">
+                    <input
+                        type="checkbox"
+                        checked={this.props.checked}
+                        onChange={event => this.props.onChange(event.target.checked)}
+                    />
+                    <span className="slider"></span>
+                </label>
+                <h6 className="toggle-text">{this.props.label}</h6>
+            </React.Fragment>
         );
     }
 }
