@@ -1,21 +1,21 @@
 .search-wrapper {
     position: relative;
-    margin-bottom: 36px;
+    margin-bottom: 18px;
 }
 
 .fa-search {
     color: rgb(155,155,155);
-    font-size: 20px;
+    font-size: 14px;
     left: 18px;
     position: absolute;
-    top: 14px;
+    top: 12px;
 }
 .search-input {
     background: rgba(155,155,155, 0.15);
     border: none;
     border-radius: 99px;
-    height: 48px;
-    padding-left: 52px;
+    height: 38px;
+    padding-left: 42px;
     width: 100%;
 }
 .search-input:focus {

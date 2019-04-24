@@ -38,7 +38,7 @@ class Clipboard extends Component <IClipboardProps, IClipboardState> {
         }, () => {
             setTimeout(() => {
                 this.setState({ notification: '' });
-            }, 2000);
+            }, 1500);
         });
     }
 
@@ -67,6 +67,7 @@ class Clipboard extends Component <IClipboardProps, IClipboardState> {
     render () {
         const re = new RegExp(this.state.search);
         const clipboard = this.props.clipboard.filter(text => text.match(re) != null);
+        const { search, notification } = this.state;
         return(
             <div id="main-container">
                 <div id="header">
@@ -75,15 +76,22 @@ class Clipboard extends Component <IClipboardProps, IClipboardState> {
                         <span className="title-line"></span>    
                     </h2>
                     <button
+                        >
+                        <FontAwesomeIcon icon='eraser' />
+                    </button>
+                    <button
                         onClick={event => chrome.runtime.openOptionsPage()}>
                         <FontAwesomeIcon icon='cog' />
                     </button>
                 </div>
                 <Searchbar 
-                    search={this.state.search}
+                    search={search}
                     onChange={(search: string) => this.setState({ search, })}
                 />
-                <p className='notification'>{this.state.notification}</p>
+                {
+                    (notification === '') ? null :
+                    <p className='notification'>{notification}</p>
+                }
                 { this.mapClipboardToNotes(clipboard) }
             </div>
         );
