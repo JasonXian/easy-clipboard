@@ -1,12 +1,16 @@
 {
     "compilerOptions": {
-        "target": "es5",
-        "module": "commonjs"
+        "outDir": "./dist/",        // path to output directory
+        "sourceMap": true,          // allow sourcemap support
+        "strictNullChecks": true,   // enable strict null checks as a best practice
+        "module": "es6",            // specify module code generation
+        "jsx": "react",             // use typescript to transpile jsx to js
+        "target": "es6",            // specify ECMAScript target version
+        "allowJs": true,            // allow a partial TypeScript and JavaScript codebase
+        "lib": [ "es2016", "dom" ],  // allow for async methods in ES5/ES3
+        "moduleResolution": "node"
     },
     "include": [
         "./src"
-    ],
-    "types": [
-        "chrome"
     ]
 }

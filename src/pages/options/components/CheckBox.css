@@ -1,0 +1,53 @@
+.toggle-text {
+  display: inline;
+  font-size: 1em;
+}
+
+/* toggle container */
+.toggle {
+  display: inline-block;
+  height: 1.75em;
+  margin-bottom: 0;
+  position: relative;
+  width: 3.5em;
+}
+/* hide the actual input */
+.toggle input {
+  height: 0;
+  position: absolute;
+  width: 0;
+  visibility: hidden;
+}
+/* the psudo input to be styled */
+.slider {
+  border-radius: 99px;
+  display: inline-block;
+  width: inherit;
+  height: inherit;
+  cursor: pointer;
+  background-color: rgba(155,155,155, 0.3);
+  transition: .4s;
+}
+/* the button that moves */
+.slider:before {
+  position: absolute;
+  border-radius: 99px;
+  content: "";
+  height: 76%;
+  width: 38%;
+  margin: 6%;
+  background-color: white;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: rgb(155,155,155);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px rgb(155,155,155);;
+}
+
+input:checked + .slider:before {
+  transform: translateX(130%);
+}

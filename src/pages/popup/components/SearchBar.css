@@ -1,0 +1,26 @@
+.search-wrapper {
+    position: relative;
+    margin-bottom: 18px;
+}
+
+.fa-search {
+    color: rgb(155,155,155);
+    font-size: 14px;
+    left: 18px;
+    position: absolute;
+    top: 12px;
+}
+.search-input {
+    background: rgba(155,155,155, 0.15);
+    border: none;
+    border-radius: 99px;
+    height: 38px;
+    padding-left: 42px;
+    width: 100%;
+}
+.search-input:focus {
+    background: none;
+    border: rgba(155,155,155,0.15) 3px solid;
+    outline: none;
+    transition: background-color 0.3s;
+}

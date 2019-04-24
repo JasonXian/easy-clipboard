@@ -1,0 +1,43 @@
+#main-container {
+    padding: 12px 18px;
+    height: inherit;
+    width: inherit;
+}
+
+#header {
+    display: flex;
+    margin-bottom: 12px;
+}
+
+.title {
+    align-self: flex-end;
+    color: rgb(111,111,111);
+    font-size: 1.4em;
+    font-weight: bold;
+    line-height: 0.7em;
+    margin: 0;
+}
+.title-line {
+    display: inline-block;
+    background-color: rgba(155,155,155, 0.3);
+    height: 3px;
+    width: 160px;
+}
+
+#main-container button:last-of-type {
+    margin-left: 0.5em;
+}
+
+.notification {
+    background: white;
+    bottom: 0;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2);
+    font-size: 1.2em;
+    font-weight: 700;
+    left: 0;
+    padding: 0.6em;
+    position: fixed;
+    text-align: center;
+    min-width: 100%;
+    z-index: 10;
+}
