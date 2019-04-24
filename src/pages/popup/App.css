@@ -4,7 +4,7 @@
     color: rgb(111,111,111);
     font-family: 'Ubuntu', sans-serif;
     min-height: 242px;
-    width: 350px;
+    width: 310px;
 }
 
 /* global default styles */
@@ -12,12 +12,12 @@ button {
     background: none;
     box-sizing: content-box;
     border-radius: 99px;
-    border: rgba(155,155,155,0.3) 4px solid;
+    border: rgba(155,155,155,0.3) 3px solid;
     color: rgb(155,155,155);
-    font-size: 20px;
-    line-height: 20px;
-    padding: 12px;
-    width: 20px;
+    font-size: 14px;
+    line-height: 14px;
+    padding: 9px;
+    width: 14px;
 }
 button:hover {
     background: rgba(155,155,155,0.15);
@@ -30,6 +30,6 @@ button:focus {
 
 p {
     overflow-wrap: break-word;
-    font-size: 16px;
+    font-size: 13px;
     margin: 0;
 }

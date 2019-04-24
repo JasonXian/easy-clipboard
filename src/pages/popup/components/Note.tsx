@@ -18,7 +18,7 @@ interface INoteState {
 class Note extends Component <INoteProps, INoteState> {
     
     private copyInput: React.RefObject<HTMLInputElement>;
-    private lineLength = 18;
+    private lineLength = 28;
 
     constructor (props: INoteProps) {
         super(props);

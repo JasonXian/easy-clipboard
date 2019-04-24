@@ -25,11 +25,14 @@ class NumberSelector extends Component <INumberSelectorProps, any> {
             this.setState({
                 value: this.state.value-1
             })
+            this.props.onChange(this.state.value-1)
         } else if (btnText == "+") {
             this.setState({
                 value: this.state.value+1
             })
+            this.props.onChange(this.state.value+1)
         }
+
     }
 
     render (){
@@ -45,7 +48,6 @@ class NumberSelector extends Component <INumberSelectorProps, any> {
                         type='number'
                         min='1'
                         value={this.state.value}
-                        onChange={event => this.props.onChange(event.target.valueAsNumber)}
                     />
                     <button
                         className="increase-btn"
