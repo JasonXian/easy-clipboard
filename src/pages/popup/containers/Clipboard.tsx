@@ -5,6 +5,7 @@ import { updateClipboard } from '../../redux/actions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Searchbar from '../components/SearchBar';
 import Note from '../components/Note';
+import Modal from '../components/Modal';
 import '../../../static/bootstrap.min.css';
 import { IReduxStore } from '../../interfaces';
 import './Clipboard.css';
@@ -20,6 +21,7 @@ interface IClipboardProps {
 interface IClipboardState {
     search: string,
     notification: string,
+    hasModalOpen: boolean,
 }
 
 class Clipboard extends Component <IClipboardProps, IClipboardState> {
@@ -29,7 +31,13 @@ class Clipboard extends Component <IClipboardProps, IClipboardState> {
         this.state = {
             search: '',
             notification: '',
+            hasModalOpen: false,
         }
+    }
+
+    private removeAllNotes() {
+        this.props.updateClipboard([]);
+        this.setNotification('Deleted all notes!');
     }
 
     private setNotification (notification: string) {
@@ -68,31 +76,49 @@ class Clipboard extends Component <IClipboardProps, IClipboardState> {
         const re = new RegExp(this.state.search);
         const clipboard = this.props.clipboard.filter(text => text.match(re) != null);
         const { search, notification } = this.state;
+        console.log(this.state.hasModalOpen);
         return(
-            <div id="main-container">
-                <div id="header">
-                    <h2 className='title'>
-                        Easy Clipboard
-                        <span className="title-line"></span>    
-                    </h2>
-                    <button
-                        >
-                        <FontAwesomeIcon icon='eraser' />
-                    </button>
-                    <button
-                        onClick={event => chrome.runtime.openOptionsPage()}>
-                        <FontAwesomeIcon icon='cog' />
-                    </button>
-                </div>
-                <Searchbar 
-                    search={search}
-                    onChange={(search: string) => this.setState({ search, })}
-                />
+            <div>
                 {
-                    (notification === '') ? null :
-                    <p className='notification'>{notification}</p>
+                    this.state.hasModalOpen &&
+                    <Modal
+                        label='Are you sure you want to delete all your notes?'
+                        title='Delete All Notes?'
+                        confirmText='Delete All'
+                        onConfirm={() => {
+                            this.removeAllNotes();
+                            this.setState({ hasModalOpen: false });
+                        }}
+                        onExit={() => this.setState({ hasModalOpen: false })}
+                    />
                 }
-                { this.mapClipboardToNotes(clipboard) }
+                <div id="main-container">
+                    <div id="header">
+                        <h2 className='title'>
+                            Easy Clipboard
+                            <span className="title-line"></span>    
+                        </h2>
+                        <button
+                            onClick={event => this.setState({ hasModalOpen: true, })}
+                        >
+                            <FontAwesomeIcon icon='eraser' />
+                        </button>
+                        <button
+                            onClick={event => chrome.runtime.openOptionsPage()}
+                        >
+                            <FontAwesomeIcon icon='cog' />
+                        </button>
+                    </div>
+                    <Searchbar 
+                        search={search}
+                        onChange={(search: string) => this.setState({ search, })}
+                    />
+                    {
+                        (notification === '') ? null :
+                        <p className='notification'>{notification}</p>
+                    }
+                    { this.mapClipboardToNotes(clipboard) }
+                </div>
             </div>
         );
     }
