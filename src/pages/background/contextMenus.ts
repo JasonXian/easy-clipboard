@@ -19,7 +19,7 @@ class ContextMenu {
             if (clickData.menuItemId == "easyCopy" && clickData.selectionText) {
                 const state: IReduxStore = this.store.getState();
                 const { clipboard } = state;
-                if (clickData.selectionText) clipboard.push(clickData.selectionText.replace(/</g, "&lt;").replace(/>/g, "&gt;"));
+                if (clickData.selectionText) clipboard.unshift(clickData.selectionText.replace(/</g, "&lt;").replace(/>/g, "&gt;"));
                 this.store.dispatch(updateClipboard(clipboard));
             }
         });
