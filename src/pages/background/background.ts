@@ -43,7 +43,7 @@ const startupScripts = (isFirst: boolean) => {
         if (chrome.runtime.id == sender.id) {
             if (request.selection) {
                 const { clipboard } = store.getState();
-                clipboard.push(request.selection);
+                clipboard.unshift(request.selection);
                 store.dispatch(updateClipboard(clipboard));
             }
         }
