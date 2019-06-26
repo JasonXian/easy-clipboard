@@ -30,14 +30,14 @@ class Modal extends Component <IModalProps> {
                     <div className='modal-footer'>
                         <button 
                             type='button'
-                            className='btn btn-info'
+                            className='btn btn-close'
                             onClick={event => this.props.onExit()}
                         >
                             Close
                         </button>
                         <button 
                             type='button'
-                            className='btn btn-primary'
+                            className='btn btn-confirm'
                             onClick={event => this.props.onConfirm()}
                         >
                             {this.props.confirmText}

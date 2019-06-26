@@ -44,12 +44,3 @@
     cursor: pointer;
     margin-top: 6px;
 }
-
-/* psudo element, keep hidden */
-.input-copy {
-    visibility: hidden;
-    height: 0px;
-    border: none;
-    padding: 0;
-    width: 0px;
-}

@@ -17,35 +17,19 @@ interface INoteState {
 
 class Note extends Component <INoteProps, INoteState> {
     
-    private copyInput: React.RefObject<HTMLInputElement>;
     private lineLength = 28;
 
     constructor (props: INoteProps) {
         super(props);
-        this.copyInput = React.createRef();
         this.state = {
             isDisplayingMore: false,
         }
-    }
-
-    private onCopy () {
-        const copyInput = this.copyInput.current;
-        if(copyInput) copyInput.select();
-        document.execCommand("copy");
-        this.props.onCopy();
     }
 
     render () {
         const displayText = this.state.isDisplayingMore ? this.props.text : this.props.text.substring(0, this.props.lineCount * this.lineLength);
         return(
             <div className='note-container'>
-                <input
-                    className='input-copy'
-                    type='text'
-                    value={this.props.text}
-                    ref={this.copyInput}
-                    readOnly={true}
-                />
                 <div className="note-text">
                     <p>{displayText}</p>
                     {
@@ -61,7 +45,7 @@ class Note extends Component <INoteProps, INoteState> {
                     <button className='icon-trash' onClick={event => this.props.onDelete()} >
                         <FontAwesomeIcon icon='trash' />
                     </button>
-                    <button className='icon-copy' onClick={event => this.onCopy()} >
+                    <button className='icon-copy' data-clipboard-text={this.props.text}>
                         <FontAwesomeIcon icon='copy' />
                     </button>
                 </div>

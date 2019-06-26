@@ -5,3 +5,13 @@
 .btn {
     width: auto !important;
 }
+
+.btn-close {
+    color: rgb(236,214,138);
+    border: 1px solid rgb(236,214,138) !important;
+}
+
+.btn-confirm {
+    color: rgb(231,151,151);
+    border: 1px solid rgb(231,151,151) !important;
+}

@@ -9,6 +9,7 @@ import Modal from '../components/Modal';
 import '../../../static/bootstrap.min.css';
 import { IReduxStore } from '../../interfaces';
 import './Clipboard.css';
+import * as ClipboardJS from 'clipboard';
 
 interface IClipboardProps {
     clipboard: string[],
@@ -28,6 +29,7 @@ class Clipboard extends Component <IClipboardProps, IClipboardState> {
 
     constructor (props: IClipboardProps) {
         super(props);
+        new ClipboardJS('.icon-copy');
         this.state = {
             search: '',
             notification: '',
@@ -76,13 +78,12 @@ class Clipboard extends Component <IClipboardProps, IClipboardState> {
         const re = new RegExp(this.state.search);
         const clipboard = this.props.clipboard.filter(text => text.match(re) != null);
         const { search, notification } = this.state;
-        console.log(this.state.hasModalOpen);
         return(
             <div>
                 {
                     this.state.hasModalOpen &&
                     <Modal
-                        label='Are you sure you want to delete all your notes?'
+                        label='Are you sure you want to delete all your notes? This action is irreversible.'
                         title='Delete All Notes?'
                         confirmText='Delete All'
                         onConfirm={() => {
