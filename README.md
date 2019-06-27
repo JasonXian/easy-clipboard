@@ -8,7 +8,7 @@ Feel free to submit a pull request if you have features that you want to add to 
 
 # Building & Testing
 
-1. `yarn run dev` to generate a fast development build for debugging in the `dist` folder
+1. `yarn run build` to generate a fast development build for debugging in the `dist` folder
 2. Navigate to `chrome://extensions/` URL in Chrome
 3. Turn on `developer mode` in the top right hand corner
 4. Click on `Load unpacked`
@@ -17,4 +17,5 @@ Feel free to submit a pull request if you have features that you want to add to 
 # TODO
 
 1. Install linter and clean up code
-2. Test cases :)
+2. Test cases
+3. Fix various minor search bugs that result from weird regex searches

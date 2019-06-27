@@ -52,6 +52,17 @@ class Clipboard extends Component <IClipboardProps, IClipboardState> {
         });
     }
 
+    private writeToClipboard () {
+        const search = this.state.search.replace(/</g, '&lt;').replace(/>/g, '&gt;').trim();
+        if (search.length == 0) return;
+        console.log(search);
+        const clipboard = this.props.clipboard;
+        clipboard.unshift(search);
+        this.props.updateClipboard(clipboard);
+        this.setState({ search: '' });
+        this.setNotification('Note Added!');
+    }
+
     private removeFromClipboard (index: number) {
         const clipboard = this.props.clipboard.filter((text, i) => i != index);
         this.props.updateClipboard(clipboard);
@@ -60,7 +71,16 @@ class Clipboard extends Component <IClipboardProps, IClipboardState> {
 
     private mapClipboardToNotes (clipboard: string[]) {
         if (clipboard.length == 0) {
-            return <p style={{textAlign:'center'}}>Saved text snippits will appear here!</p>
+            return (
+                <div>
+                    <p style={{textAlign:'center'}}>
+                        Saved text snippits will appear here!
+                    </p>
+                    <p style={{textAlign:'center'}}>
+                        Click the pencil button to add any text in the search bar as a text snippit!
+                    </p>
+                </div>  
+            ) 
         }
         return clipboard.map((text, index) => (
             <Note
@@ -100,14 +120,19 @@ class Clipboard extends Component <IClipboardProps, IClipboardState> {
                             <span className="title-line"></span>    
                         </h2>
                         <button
+                            onClick={event => chrome.runtime.openOptionsPage()}
+                        >
+                            <FontAwesomeIcon icon='cog' />
+                        </button>
+                        <button
                             onClick={event => this.setState({ hasModalOpen: true, })}
                         >
                             <FontAwesomeIcon icon='eraser' />
                         </button>
                         <button
-                            onClick={event => chrome.runtime.openOptionsPage()}
+                            onClick={event => this.writeToClipboard()}
                         >
-                            <FontAwesomeIcon icon='cog' />
+                            <FontAwesomeIcon icon='pencil-alt' />
                         </button>
                     </div>
                     <Searchbar 

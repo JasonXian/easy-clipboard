@@ -10,11 +10,12 @@
 .note-text {
     height: fit-content;
     padding-right: 12px;
-    width: 150%;
+    width: 80%;
 }
 
 .note-buttons {
     height: fit-content;
+    width: 20%;
 }
 .note-buttons button {
     float: right;

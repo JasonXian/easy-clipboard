@@ -8,7 +8,7 @@ class ContentScript {
                     const selection = window.getSelection();
                     if (selection) {
                         chrome.runtime.sendMessage({
-                            selection: selection.toString().replace(/</g, '&lt;').replace(/>/g, '&gt;'),
+                            selection: selection.toString().replace(/</g, '&lt;').replace(/>/g, '&gt;').trim(),
                         });
                     }
                 }
