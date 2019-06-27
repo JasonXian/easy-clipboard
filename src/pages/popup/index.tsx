@@ -3,10 +3,10 @@ import { Provider } from 'react-redux';
 import * as React from 'react';
 import { Store } from 'webext-redux';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faSearch, faTrash, faCopy, faCog, faEraser } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faTrash, faCopy, faCog, faEraser, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import App from './App';
 
-library.add(faSearch, faTrash, faCopy, faCog, faEraser)
+library.add(faSearch, faTrash, faCopy, faCog, faEraser, faPencilAlt);
 
 const store = new Store({
     portName: 'easy-clipboard'

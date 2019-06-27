@@ -21,10 +21,10 @@
     display: inline-block;
     background-color: rgba(155,155,155, 0.3);
     height: 3px;
-    width: 160px;
+    width: 145px;
 }
 
-#main-container button:last-of-type {
+#main-container button {
     margin-left: 0.5em;
 }
 

@@ -10,11 +10,12 @@
 .note-text {
     height: fit-content;
     padding-right: 12px;
-    width: 150%;
+    width: 80%;
 }
 
 .note-buttons {
     height: fit-content;
+    width: 20%;
 }
 .note-buttons button {
     float: right;
@@ -43,13 +44,4 @@
     color: rgb(113,163,199);
     cursor: pointer;
     margin-top: 6px;
-}
-
-/* psudo element, keep hidden */
-.input-copy {
-    visibility: hidden;
-    height: 0px;
-    border: none;
-    padding: 0;
-    width: 0px;
 }
