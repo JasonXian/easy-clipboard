@@ -45,7 +45,7 @@ class Note extends Component <INoteProps, INoteState> {
                     <button className='icon-trash' onClick={event => this.props.onDelete()} >
                         <FontAwesomeIcon icon='trash' />
                     </button>
-                    <button className='icon-copy' data-clipboard-text={this.props.text}>
+                    <button className='icon-copy' onClick={event => this.props.onCopy()} data-clipboard-text={this.props.text}>
                         <FontAwesomeIcon icon='copy' />
                     </button>
                 </div>
