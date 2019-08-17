@@ -52,12 +52,21 @@ class Clipboard extends Component <IClipboardProps, IClipboardState> {
         });
     }
 
-    private writeToClipboard () {
-        const search = this.state.search.replace(/</g, '&lt;').replace(/>/g, '&gt;').trim();
-        if (search.length == 0) return;
-        console.log(search);
+    private writeURL () {
+        window.chrome.tabs.query({ active: true }, tab => {
+            if (tab[0] && tab[0].url) this.writeToClipboard(tab[0].url);
+        });
+    }
+
+    private writeNote () {
+        this.writeToClipboard(this.state.search);
+    }
+
+    private writeToClipboard (note: string) {
+        const snippet = note.replace(/</g, '&lt;').replace(/>/g, '&gt;').trim();
+        if (snippet.length == 0) return;
         const clipboard = this.props.clipboard;
-        clipboard.unshift(search);
+        clipboard.unshift(snippet);
         this.props.updateClipboard(clipboard);
         this.setState({ search: '' });
         this.setNotification('Note Added!');
@@ -130,15 +139,22 @@ class Clipboard extends Component <IClipboardProps, IClipboardState> {
                             <FontAwesomeIcon icon='eraser' />
                         </button>
                         <button
-                            onClick={event => this.writeToClipboard()}
+                            onClick={event => this.writeNote()}
                         >
                             <FontAwesomeIcon icon='pencil-alt' />
                         </button>
                     </div>
-                    <Searchbar 
-                        search={search}
-                        onChange={(search: string) => this.setState({ search, })}
-                    />
+                        <div>
+                        <Searchbar 
+                            search={search}
+                            onChange={(search: string) => this.setState({ search, })}
+                        />
+                        <button
+                            onClick={event => this.writeURL()}
+                        >
+                            <FontAwesomeIcon icon='globe' />
+                        </button>
+                    </div>
                     {
                         (notification === '') ? null :
                         <p className='notification'>{notification}</p>

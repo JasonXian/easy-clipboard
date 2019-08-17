@@ -1,6 +1,8 @@
 .search-wrapper {
+    display: inline-block;
     position: relative;
     margin-bottom: 18px;
+    width: 80%;
 }
 
 .fa-search {
