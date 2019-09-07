@@ -1,8 +1,8 @@
 {
   "name": "easy-clipboard",
   "description": "chrome extension for easy copy and pasting",
-  "version": "2.1.1",
-  "author": "Jason Xian",
+  "version": "2.2.0",
+  "author": "Jason Xian & Christopher Jiang",
   "license": "ISC",
   "scripts": {
     "dev": "webpack --watch --progess --mode development",

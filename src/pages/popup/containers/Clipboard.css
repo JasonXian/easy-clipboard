@@ -9,6 +9,11 @@
     margin-bottom: 12px;
 }
 
+.eraser-button {
+    border-color: rgba(231,151,151,0.3);
+    color: rgb(231,151,151);
+}
+
 .title {
     align-self: flex-end;
     color: rgb(111,111,111);
@@ -21,8 +26,23 @@
     display: inline-block;
     background-color: rgba(155,155,155, 0.3);
     height: 3px;
-    width: 145px;
+    width: 170px;
 }
+
+.help-buttons-wrapper {
+    margin-bottom: 10px;
+}
+
+.help-buttons-wrapper button {
+    width: auto;
+}
+
+.help-buttons-wrapper h6 {
+    display: inline-block;
+    margin-left: 5px;
+    margin-bottom: 0;
+}
+
 
 #main-container button {
     margin-left: 0.5em;

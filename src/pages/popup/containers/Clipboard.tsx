@@ -85,9 +85,6 @@ class Clipboard extends Component <IClipboardProps, IClipboardState> {
                     <p style={{textAlign:'center'}}>
                         Saved text snippits will appear here!
                     </p>
-                    <p style={{textAlign:'center'}}>
-                        Click the pencil button to add any text in the search bar as a text snippit!
-                    </p>
                 </div>  
             ) 
         }
@@ -129,34 +126,40 @@ class Clipboard extends Component <IClipboardProps, IClipboardState> {
                             <span className="title-line"></span>    
                         </h2>
                         <button
-                            onClick={event => chrome.runtime.openOptionsPage()}
-                        >
-                            <FontAwesomeIcon icon='cog' />
-                        </button>
-                        <button
                             onClick={event => this.setState({ hasModalOpen: true, })}
+                            className='eraser-button'
                         >
                             <FontAwesomeIcon icon='eraser' />
                         </button>
                         <button
-                            onClick={event => this.writeNote()}
+                            onClick={event => chrome.runtime.openOptionsPage()}
                         >
-                            <FontAwesomeIcon icon='pencil-alt' />
+                            <FontAwesomeIcon icon='cog' />
                         </button>
                     </div>
-                        <div>
-                        <Searchbar 
-                            search={search}
-                            onChange={(search: string) => this.setState({ search, })}
-                        />
+                    <Searchbar 
+                        search={search}
+                        onChange={(search: string) => this.setState({ search, })}
+                    />
+                    <div className='help-buttons-wrapper'>
                         <button
                             onClick={event => this.writeURL()}
                         >
                             <FontAwesomeIcon icon='globe' />
+                            <h6>Save URL</h6>
                         </button>
+                        {
+                            (search != '') &&
+                            <button
+                                onClick={event => this.writeNote()}
+                            >
+                                <FontAwesomeIcon icon='pencil-alt' />
+                                <h6>Save Search Text</h6>
+                            </button>
+                        }
                     </div>
                     {
-                        (notification === '') ? null :
+                        !(notification === '') &&
                         <p className='notification'>{notification}</p>
                     }
                     { this.mapClipboardToNotes(clipboard) }

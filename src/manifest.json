@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Easy Clipboard",
-    "version": "2.1.1",
+    "version": "2.2.0",
     "description": "Easy Clipboard allows you to quickly copy and paste text, urls and more, and store them safely in your browser for future use.",
     "icons": {
         "128": "./static/icon128.png",
