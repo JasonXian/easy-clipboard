@@ -9,9 +9,13 @@
     margin-bottom: 12px;
 }
 
+/* same style as components/Note.css > .trash-icon class */
 .eraser-button {
     border-color: rgba(231,151,151,0.3);
     color: rgb(231,151,151);
+}
+.eraser-button:hover {
+    background: rgba(231,151,151,0.15);
 }
 
 .title {
@@ -30,19 +34,40 @@
 }
 
 .help-buttons-wrapper {
-    margin-bottom: 10px;
+    margin-bottom: 1.4em;
+    overflow-x: hidden;
+    white-space: nowrap;
 }
-
 .help-buttons-wrapper button {
+    font-weight: bold;
+    padding: 9px 12px;
     width: auto;
 }
-
+#main-container .help-buttons-wrapper button:first-of-type {
+    margin: 0;
+}
+.help-buttons-wrapper button svg {
+    vertical-align: bottom;
+}
 .help-buttons-wrapper h6 {
     display: inline-block;
-    margin-left: 5px;
+    margin-left: 0.5em;
     margin-bottom: 0;
 }
-
+.button-url {
+    border-color: rgba(105,137,198,0.3);
+    color: rgb(105,137,198);
+}
+.button-url:hover {
+    background: rgba(105,137,198,0.15);
+}
+.button-add-note {
+    border-color: rgba(111,171,121,0.3);
+    color: rgb(111,171,121);
+}
+.button-add-note:hover {
+    background: rgba(111,171,121,0.15);
+}
 
 #main-container button {
     margin-left: 0.5em;

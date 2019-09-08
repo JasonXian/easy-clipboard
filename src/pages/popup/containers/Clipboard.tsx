@@ -3,6 +3,7 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import { updateClipboard } from '../../redux/actions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGlobeAmericas } from '@fortawesome/free-solid-svg-icons';
 import Searchbar from '../components/SearchBar';
 import Note from '../components/Note';
 import Modal from '../components/Modal';
@@ -143,18 +144,20 @@ class Clipboard extends Component <IClipboardProps, IClipboardState> {
                     />
                     <div className='help-buttons-wrapper'>
                         <button
+                            className="button-url"
                             onClick={event => this.writeURL()}
                         >
-                            <FontAwesomeIcon icon='globe' />
+                            <FontAwesomeIcon icon={faGlobeAmericas} />
                             <h6>Save URL</h6>
                         </button>
                         {
                             (search != '') &&
                             <button
+                                className="button-add-note"
                                 onClick={event => this.writeNote()}
                             >
                                 <FontAwesomeIcon icon='pencil-alt' />
-                                <h6>Save Search Text</h6>
+                                <h6>Add to Clipboard</h6>
                             </button>
                         }
                     </div>

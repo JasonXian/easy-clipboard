@@ -20,7 +20,8 @@ class SearchBar extends Component <ISearchBarProps> {
                 <FontAwesomeIcon icon='search' />
                 <input
                     className="search-input"
-                    type='text'
+                    type="text"
+                    placeholder="Search or Add Notes..."
                     value={this.props.search}
                     onChange={event => this.props.onChange(event.target.value)}
                 />
