@@ -54,8 +54,11 @@ class Clipboard extends Component <IClipboardProps, IClipboardState> {
     }
 
     private writeURL () {
-        window.chrome.tabs.query({ active: true }, tab => {
-            if (tab[0] && tab[0].url) this.writeToClipboard(tab[0].url);
+        window.chrome.tabs.query({ 
+            active: true,
+            currentWindow: true,
+        }, tabs => {
+            if (tabs[0] && tabs[0].url) this.writeToClipboard(tabs[0].url);
         });
     }
 
