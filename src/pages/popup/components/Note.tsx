@@ -37,7 +37,7 @@ class Note extends Component <INoteProps, INoteState> {
                         <p 
                             className='display-more-text'
                             onClick={event => this.setState({ isDisplayingMore: !this.state.isDisplayingMore })}>
-                            { this.state.isDisplayingMore ? '... Show less': '... Show more' }
+                            { this.state.isDisplayingMore ? 'Show less': '... Show more' }
                         </p>
                     }
                 </div>

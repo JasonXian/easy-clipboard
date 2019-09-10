@@ -3,6 +3,7 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import { updateClipboard } from '../../redux/actions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGlobeAmericas } from '@fortawesome/free-solid-svg-icons';
 import Searchbar from '../components/SearchBar';
 import Note from '../components/Note';
 import Modal from '../components/Modal';
@@ -52,12 +53,21 @@ class Clipboard extends Component <IClipboardProps, IClipboardState> {
         });
     }
 
-    private writeToClipboard () {
-        const search = this.state.search.replace(/</g, '&lt;').replace(/>/g, '&gt;').trim();
-        if (search.length == 0) return;
-        console.log(search);
+    private writeURL () {
+        window.chrome.tabs.query({ active: true }, tab => {
+            if (tab[0] && tab[0].url) this.writeToClipboard(tab[0].url);
+        });
+    }
+
+    private writeNote () {
+        this.writeToClipboard(this.state.search);
+    }
+
+    private writeToClipboard (note: string) {
+        const snippet = note.replace(/</g, '&lt;').replace(/>/g, '&gt;').trim();
+        if (snippet.length == 0) return;
         const clipboard = this.props.clipboard;
-        clipboard.unshift(search);
+        clipboard.unshift(snippet);
         this.props.updateClipboard(clipboard);
         this.setState({ search: '' });
         this.setNotification('Note Added!');
@@ -75,9 +85,6 @@ class Clipboard extends Component <IClipboardProps, IClipboardState> {
                 <div>
                     <p style={{textAlign:'center'}}>
                         Saved text snippits will appear here!
-                    </p>
-                    <p style={{textAlign:'center'}}>
-                        Click the pencil button to add any text in the search bar as a text snippit!
                     </p>
                 </div>  
             ) 
@@ -120,27 +127,42 @@ class Clipboard extends Component <IClipboardProps, IClipboardState> {
                             <span className="title-line"></span>    
                         </h2>
                         <button
-                            onClick={event => chrome.runtime.openOptionsPage()}
-                        >
-                            <FontAwesomeIcon icon='cog' />
-                        </button>
-                        <button
                             onClick={event => this.setState({ hasModalOpen: true, })}
+                            className='eraser-button'
                         >
                             <FontAwesomeIcon icon='eraser' />
                         </button>
                         <button
-                            onClick={event => this.writeToClipboard()}
+                            onClick={event => chrome.runtime.openOptionsPage()}
                         >
-                            <FontAwesomeIcon icon='pencil-alt' />
+                            <FontAwesomeIcon icon='cog' />
                         </button>
                     </div>
                     <Searchbar 
                         search={search}
                         onChange={(search: string) => this.setState({ search, })}
                     />
+                    <div className='help-buttons-wrapper'>
+                        <button
+                            className="button-url"
+                            onClick={event => this.writeURL()}
+                        >
+                            <FontAwesomeIcon icon={faGlobeAmericas} />
+                            <h6>Save URL</h6>
+                        </button>
+                        {
+                            (search != '') &&
+                            <button
+                                className="button-add-note"
+                                onClick={event => this.writeNote()}
+                            >
+                                <FontAwesomeIcon icon='pencil-alt' />
+                                <h6>Add to Clipboard</h6>
+                            </button>
+                        }
+                    </div>
                     {
-                        (notification === '') ? null :
+                        !(notification === '') &&
                         <p className='notification'>{notification}</p>
                     }
                     { this.mapClipboardToNotes(clipboard) }

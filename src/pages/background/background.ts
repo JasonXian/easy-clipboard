@@ -54,7 +54,6 @@ const startupScripts = (isFirst: boolean) => {
 
 chrome.runtime.onInstalled.addListener(() => {
     startupScripts(true);
-    chrome.runtime.openOptionsPage();
 });
 
 chrome.runtime.onStartup.addListener(() => {
