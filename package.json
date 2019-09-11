@@ -20,15 +20,15 @@
     "css-loader": "^0.28.4",
     "file-loader": "^0.11.2",
     "normalize.css": "^8.0.1",
-    "react": "^16.8.5",
-    "react-dom": "^16.8.5",
-    "react-redux": "^4.4.6",
-    "redux": "^4.0.1",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-redux": "^7.1.1",
+    "redux": "^4.0.4",
     "svg-inline-loader": "^0.8.0",
     "svg-inline-react": "^3.1.0",
-    "url-loader": "^0.5.9",
+    "url-loader": "^2.1.0",
     "uuid": "^3.3.2",
-    "webext-redux": "2.0.1"
+    "webext-redux": "^2.1.2"
   },
   "devDependencies": {
     "@types/chrome": "0.0.81",
