@@ -86,3 +86,8 @@
     min-width: 100%;
     z-index: 10;
 }
+
+.undo-text {
+    color: lightblue;
+    cursor: pointer;
+}

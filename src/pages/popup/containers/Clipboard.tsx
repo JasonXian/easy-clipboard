@@ -23,6 +23,7 @@ interface IClipboardProps {
 interface IClipboardState {
     search: string,
     notification: string,
+    undoText: string,
     hasModalOpen: boolean,
 }
 
@@ -34,28 +35,35 @@ class Clipboard extends Component <IClipboardProps, IClipboardState> {
         this.state = {
             search: '',
             notification: '',
+            undoText: '',
             hasModalOpen: false,
         }
     }
 
     private removeAllNotes() {
         this.props.updateClipboard([]);
-        this.setNotification('Deleted all notes!');
+        this.setNotification('Deleted all notes!', 1500);
     }
 
-    private setNotification (notification: string) {
+    private setNotification (notification: string, timeout: number) {
         this.setState({
             notification,
         }, () => {
             setTimeout(() => {
-                this.setState({ notification: '' });
-            }, 1500);
+                this.setState({ 
+                    notification: '',
+                    undoText: '',
+                });
+            }, timeout);
         });
     }
 
     private writeURL () {
-        window.chrome.tabs.query({ active: true }, tab => {
-            if (tab[0] && tab[0].url) this.writeToClipboard(tab[0].url);
+        window.chrome.tabs.query({ 
+            active: true,
+            currentWindow: true,
+        }, tabs => {
+            if (tabs[0] && tabs[0].url) this.writeToClipboard(tabs[0].url);
         });
     }
 
@@ -70,13 +78,35 @@ class Clipboard extends Component <IClipboardProps, IClipboardState> {
         clipboard.unshift(snippet);
         this.props.updateClipboard(clipboard);
         this.setState({ search: '' });
-        this.setNotification('Note Added!');
+        this.setNotification('Note Added!', 1500);
     }
 
     private removeFromClipboard (index: number) {
-        const clipboard = this.props.clipboard.filter((text, i) => i != index);
+        let undoText;
+        const clipboard = this.props.clipboard.filter((text, i) => {
+            if (i == index) {
+                undoText = text;
+                return false;
+            }
+            return true;
+        });
         this.props.updateClipboard(clipboard);
-        this.setNotification('Deleted!');
+        this.setState({
+            undoText,
+        }, () => {
+            this.setNotification('Deleted!', 5000);
+        });
+    }
+
+    private undoDelete() {
+        const { undoText } = this.state;
+        if (undoText != '') {
+            this.setState({
+                undoText: '',
+            }, () => {
+                this.writeToClipboard(undoText);
+            });
+        }
     }
 
     private mapClipboardToNotes (clipboard: string[]) {
@@ -95,7 +125,7 @@ class Clipboard extends Component <IClipboardProps, IClipboardState> {
                 key={index}
                 text={text}
                 lineCount={this.props.lineCount}
-                onCopy={() => this.setNotification('Copied!')}
+                onCopy={() => this.setNotification('Copied!', 1500)}
                 onDelete={() => this.removeFromClipboard(index)}
             />
         ));
@@ -104,7 +134,7 @@ class Clipboard extends Component <IClipboardProps, IClipboardState> {
     render () {
         const re = new RegExp(this.state.search);
         const clipboard = this.props.clipboard.filter(text => text.match(re) != null);
-        const { search, notification } = this.state;
+        const { search, notification, undoText } = this.state;
         return(
             <div>
                 {
@@ -112,7 +142,7 @@ class Clipboard extends Component <IClipboardProps, IClipboardState> {
                     <Modal
                         label='Are you sure you want to delete all your notes? This action is irreversible.'
                         title='Delete All Notes?'
-                        confirmText='Delete All'
+                        confirmText='Delete'
                         onConfirm={() => {
                             this.removeAllNotes();
                             this.setState({ hasModalOpen: false });
@@ -162,8 +192,19 @@ class Clipboard extends Component <IClipboardProps, IClipboardState> {
                         }
                     </div>
                     {
-                        !(notification === '') &&
-                        <p className='notification'>{notification}</p>
+                        (notification != '') &&
+                        <p className='notification'>
+                            { notification }
+                            {
+                                (undoText != '') &&
+                                <span
+                                    className='undo-text'
+                                    onClick={() => this.undoDelete()}
+                                >
+                                    &nbsp;Undo?
+                                </span>
+                            }
+                        </p>
                     }
                     { this.mapClipboardToNotes(clipboard) }
                 </div>
