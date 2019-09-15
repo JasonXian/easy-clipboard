@@ -142,7 +142,7 @@ class Clipboard extends Component <IClipboardProps, IClipboardState> {
                     <Modal
                         label='Are you sure you want to delete all your notes? This action is irreversible.'
                         title='Delete All Notes?'
-                        confirmText='Delete All'
+                        confirmText='Delete'
                         onConfirm={() => {
                             this.removeAllNotes();
                             this.setState({ hasModalOpen: false });

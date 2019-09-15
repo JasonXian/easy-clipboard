@@ -2,7 +2,17 @@
     display: inline-block !important;
 }
 
+.modal-title {
+    margin-bottom: 5px !important;
+}
+
+.modal-btns {
+    float: right;
+    margin-top: 10px;
+}
+
 .btn {
+    margin-left: 10px !important;
     width: auto !important;
 }
 
