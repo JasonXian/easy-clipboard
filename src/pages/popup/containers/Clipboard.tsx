@@ -23,6 +23,7 @@ interface IClipboardProps {
 interface IClipboardState {
     search: string,
     notification: string,
+    oldTimeout: number,
     undoText: string,
     hasModalOpen: boolean,
 }
@@ -35,6 +36,7 @@ class Clipboard extends Component <IClipboardProps, IClipboardState> {
         this.state = {
             search: '',
             notification: '',
+            oldTimeout: -1,
             undoText: '',
             hasModalOpen: false,
         }
@@ -49,12 +51,15 @@ class Clipboard extends Component <IClipboardProps, IClipboardState> {
         this.setState({
             notification,
         }, () => {
-            setTimeout(() => {
+            if (this.state.oldTimeout != -1) clearTimeout(this.state.oldTimeout);
+            const oldTimeout = window.setTimeout(() => {
                 this.setState({ 
                     notification: '',
+                    oldTimeout: -1,
                     undoText: '',
                 });
             }, timeout);
+            this.setState({ oldTimeout, });
         });
     }
 

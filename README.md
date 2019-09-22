@@ -14,8 +14,9 @@ Feel free to submit a pull request if you have features that you want to add to 
 4. Click on `Load unpacked`
 5. Select the entire `dist` folder
 
-# TODO
+# Backlog
 
 1. Install linter and clean up code
 2. Test cases
 3. Fix various minor search bugs that result from weird regex searches
+4. Investigate issues with auto-copying text within iframes
