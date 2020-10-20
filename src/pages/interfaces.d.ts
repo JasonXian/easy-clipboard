@@ -1,21 +1,21 @@
 export interface IChromeStorage extends IUserOptions {
-    clipboard: string[],
+  clipboard: string[];
 }
 
 export interface IReduxStore {
-    clipboard: string[],
-    options: IUserOptions,
+  clipboard: string[];
+  options: IUserOptions;
 }
 
 export interface ICopiedData {
-    content: string,
-    date: Date,
-    source: string,
+  content: string;
+  date: Date;
+  source: string;
 }
 
 export interface IUserOptions {
-    backgroundColor: string,
-    textColor: string,
-    autoCopy: boolean,
-    lineCount: number,
+  backgroundColor: string;
+  textColor: string;
+  autoCopy: boolean;
+  lineCount: number;
 }

@@ -1,35 +1,35 @@
-@import url('https://fonts.googleapis.com/css?family=Ubuntu:500,700');
+@import url("https://fonts.googleapis.com/css?family=Ubuntu:500,700");
 
 #root {
-    color: rgb(111,111,111);
-    font-family: 'Ubuntu', sans-serif;
-    min-height: 242px;
-    width: 310px;
+  color: rgb(111, 111, 111);
+  font-family: "Ubuntu", sans-serif;
+  min-height: 242px;
+  width: 310px;
 }
 
 /* global default styles */
 button {
-    background: none;
-    box-sizing: content-box;
-    border-radius: 99px;
-    border: rgba(155,155,155,0.3) 3px solid;
-    color: rgb(155,155,155);
-    font-size: 14px;
-    line-height: 14px;
-    padding: 9px;
-    width: 14px;
+  background: none;
+  box-sizing: content-box;
+  border-radius: 99px;
+  border: rgba(155, 155, 155, 0.3) 3px solid;
+  color: rgb(155, 155, 155);
+  font-size: 14px;
+  line-height: 14px;
+  padding: 9px;
+  width: 14px;
 }
 button:hover {
-    background: rgba(155,155,155,0.15);
-    cursor: pointer;
-    transition: all 0.3s;
+  background: rgba(155, 155, 155, 0.15);
+  cursor: pointer;
+  transition: all 0.3s;
 }
 button:focus {
-    outline: none;
+  outline: none;
 }
 
 p {
-    overflow-wrap: break-word;
-    font-size: 13px;
-    margin: 0;
+  overflow-wrap: break-word;
+  font-size: 13px;
+  margin: 0;
 }

@@ -1,33 +1,33 @@
 .modal {
-    display: inline-block !important;
+  display: inline-block !important;
 }
 
 .modal-title {
-    margin-bottom: 5px !important;
+  margin-bottom: 5px !important;
 }
 
 .modal-btns {
-    float: right;
-    margin-top: 10px;
+  float: right;
+  margin-top: 10px;
 }
 
 .btn {
-    margin-left: 10px !important;
-    width: auto !important;
+  margin-left: 10px !important;
+  width: auto !important;
 }
 
 .btn-close {
-    color: rgb(236,214,138);
-    border: 1px solid rgb(236,214,138) !important;
+  color: rgb(236, 214, 138);
+  border: 1px solid rgb(236, 214, 138) !important;
 }
 .btn-close:hover {
-    background: rgba(236,214,138,0.15) !important;
+  background: rgba(236, 214, 138, 0.15) !important;
 }
 
 .btn-confirm {
-    color: rgb(231,151,151);
-    border: 1px solid rgb(231,151,151) !important;
+  color: rgb(231, 151, 151);
+  border: 1px solid rgb(231, 151, 151) !important;
 }
 .btn-close:hover {
-    background: rgba(231,151,151,0.15) !important;
+  background: rgba(231, 151, 151, 0.15) !important;
 }

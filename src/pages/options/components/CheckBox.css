@@ -25,8 +25,8 @@
   width: inherit;
   height: inherit;
   cursor: pointer;
-  background-color: rgba(155,155,155, 0.3);
-  transition: .4s;
+  background-color: rgba(155, 155, 155, 0.3);
+  transition: 0.4s;
 }
 /* the button that moves */
 .slider:before {
@@ -37,15 +37,15 @@
   width: 38%;
   margin: 6%;
   background-color: white;
-  transition: .4s;
+  transition: 0.4s;
 }
 
 input:checked + .slider {
-  background-color: rgb(155,155,155);
+  background-color: rgb(155, 155, 155);
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px rgb(155,155,155);;
+  box-shadow: 0 0 1px rgb(155, 155, 155);
 }
 
 input:checked + .slider:before {

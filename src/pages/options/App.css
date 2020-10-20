@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Ubuntu:500,700');
+@import url("https://fonts.googleapis.com/css?family=Ubuntu:500,700");
 
 #root {
-    color: rgb(111,111,111);
-    font-family: 'Ubuntu', sans-serif;
+  color: rgb(111, 111, 111);
+  font-family: "Ubuntu", sans-serif;
 }

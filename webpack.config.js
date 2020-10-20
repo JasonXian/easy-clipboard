@@ -1,10 +1,9 @@
 const path = require('path')
 const CopyPlugin = require('copy-webpack-plugin')
 const HtmlPlugin = require('html-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
-require("babel-core/register");
-require("babel-polyfill");
+require("@babel/register");
 
 const PAGES_PATH = './src/pages';
 
@@ -20,22 +19,10 @@ function generateHtmlPlugins(items) {
 
 module.exports = {
   entry: {
-    background: [
-      'babel-polyfill',
-      `${PAGES_PATH}/background/background.ts`,
-    ],
-    contentScript: [
-      'babel-polyfill',
-      `${PAGES_PATH}/contentScript/contentScript.ts`,
-    ],
-    popup: [
-      'babel-polyfill',
-      `${PAGES_PATH}/popup/index.tsx`,
-    ],
-    options: [
-      'babel-polyfill',
-      `${PAGES_PATH}/options/index.tsx`,
-    ]
+    background: `${PAGES_PATH}/background/background.ts`,
+    contentScript: `${PAGES_PATH}/contentScript/contentScript.ts`,
+    popup: `${PAGES_PATH}/popup/index.tsx`,
+    options: `${PAGES_PATH}/options/index.tsx`,
   },
   output: {
     path: path.resolve('dist/pages'),
@@ -62,8 +49,8 @@ module.exports = {
         loader: 'url-loader?limit=10000&mimetype=application/fontwoff'
       },
       {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        test: /\.css$/i,
+        use: [ MiniCssExtractPlugin.loader, 'css-loader'],
       },
       {
         test: /\.svg$/,
@@ -75,7 +62,7 @@ module.exports = {
     extensions: [ '.tsx', '.ts', '.js', '.css' ]
   },
   plugins: [
-    new ExtractTextPlugin(
+    new MiniCssExtractPlugin(
       {
         filename: '[name].[contenthash].css',
       }

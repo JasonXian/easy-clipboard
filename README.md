@@ -16,7 +16,7 @@ Feel free to submit a pull request if you have features that you want to add to 
 
 # Backlog
 
-1. Install linter and clean up code
-2. Test cases
-3. Fix various minor search bugs that result from weird regex searches
-4. Investigate issues with auto-copying text within iframes
+1. Test cases
+2. Fix various minor search bugs that result from weird regex searches
+3. Investigate issues with auto-copying text within iframes
+4. Remove bootstrap to save even more space
